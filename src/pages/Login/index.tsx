@@ -23,7 +23,7 @@ function Login() {
     clearAlerts();
 
     if (!email && !password) {
-      setEmailPasswordAlert('Plase, type your e-mail and password!');
+      setEmailPasswordAlert('Please, type your e-mail and password!');
     } else if (!email) {
       setEmailAlert('Please, type your e-mail!');
     } else if (!password) {
