@@ -18,9 +18,10 @@ function SelectField({
   return (
     <div>
       <label htmlFor={id}>{label}</label>
-      <select name={name} id={id} value={value} onChange={(e) => onChange(e.target.value)}>
+      <select name={name} id={id} value={value} onChange={(e) => onChange(e.target.value)} defaultValue="">
+        <option value=""></option>
         {options.map((option, index) => (
-          <option key={index} value={option}>
+          <option key={index} value={option.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s/g, "")}>
             {option}
           </option>
         ))}

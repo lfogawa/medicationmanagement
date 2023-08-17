@@ -5,11 +5,11 @@ import { SelectField } from "../../components/SelectField";
 
 function MedicineRegistration(){
   const [medicineName, setMedicineName] = useState('');
-  const [labName, setLabName] = useState();
-  const [dosage, setDosage] = useState('');
+  const [labName, setLabName] = useState('');
+  const [dosage, setDosage] = useState();
   const [description, setDescription] = useState('');
   const [unitPrice, setUnitPrice] = useState();
-  const [type, setType] = useState();
+  const [type, setType] = useState('');
   const [generalAlert, setGeneralAlert] = useState(false);
   const [successAlert, setSuccessAlert] = useState(false);
   const [failureAlert, setFailureAlert] = useState(false)
@@ -25,25 +25,33 @@ function MedicineRegistration(){
       !labName ||
       !dosage ||
       !unitPrice ||
-      !type
+      type === ""
     ) {
       setGeneralAlert(true);
+      setTimeout(() => setGeneralAlert(false), 3500);
       return;
     } else {
       try {
+        const medicineData = {
+          medicineName,
+          labName,
+          dosage,
+          description,
+          unitPrice,
+          type
+        };
+        localStorage.setItem('itemMedicineData', JSON.stringify(medicineData));
+
         setSuccessAlert(true);
+        setTimeout(() => setSuccessAlert(false), 3500);
         return;
-      } catch {
+      } catch (error) {
+        console.error("Error during registration:", error);
         setFailureAlert(true);
+        setTimeout(() => setFailureAlert(false), 3500);
         return;
       }
     }
-
-    setTimeout(() => {
-      setGeneralAlert(false);
-      setSuccessAlert(false);
-      setFailureAlert(false);
-    }, 3500);
   };
 
 
@@ -73,7 +81,7 @@ function MedicineRegistration(){
               />
               <InputField
                 label="Dosage*"
-                type="text"
+                type="number"
                 name="dosage"
                 id="dosage"
                 value={dosage}
@@ -82,7 +90,6 @@ function MedicineRegistration(){
               />
               <TextAreaField
                 label="Description"
-                type="text"
                 name="description"
                 id="description"
                 value={description}
@@ -91,7 +98,7 @@ function MedicineRegistration(){
               />
               <InputField
                 label="Unit Price*"
-                type="text"
+                type="number"
                 name="unitprice"
                 id="unitprice"
                 value={unitPrice}
@@ -109,9 +116,11 @@ function MedicineRegistration(){
               <p>* fields must be filled.</p>
             <button type='submit'>Register</button>
           </form>
-        {generalAlert && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
-        {successAlert && <p style={{ color: 'green' }}>Registration successfull!</p>}
-        {failureAlert && <p style={{ color: 'red' }}>Registration failure.</p>}
+        <div>
+          {generalAlert && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
+          {successAlert && <p style={{ color: 'green' }}>Registration successfull!</p>}
+          {failureAlert && <p style={{ color: 'red' }}>Registration failure.</p>}
+        </div>
       </div>
     </>
   )

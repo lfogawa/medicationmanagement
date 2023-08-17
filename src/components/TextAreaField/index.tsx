@@ -1,6 +1,5 @@
 interface TextAreaFieldProps {
   label: string;
-  type: string;
   name: string;
   id: string;
   value: string;
@@ -10,7 +9,6 @@ interface TextAreaFieldProps {
 
 function TextAreaField({
   label,
-  type,
   name,
   id,
   value,
@@ -21,7 +19,6 @@ function TextAreaField({
     <div>
       <label htmlFor={id}>{label}</label>
       <textarea
-        type={type}
         name={name}
         id={id}
         placeholder={placeholder}
