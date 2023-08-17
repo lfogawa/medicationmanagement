@@ -1,23 +1,46 @@
+import React from "react";
 import { useState } from "react";
 import { InputField } from "../../components/InputField";
 
 function PharmacyRegistration(){
   const [corporateName, setCorporateName] = useState('');
-  const [cnpj, setCnpj] = useState();
+  const [cnpj, setCnpj] = useState('');
   const [tradeName, setTradeName] = useState('');
   const [companyEmail, setCompanyEmail] = useState('');
-  const [companyPhone, setCompanyPhone] = useState();
-  const [companyCellphone, setCompanyCellphone] = useState();
-  const [zipCode, setZipCode] = useState();
+  const [companyPhone, setCompanyPhone] = useState('');
+  const [companyCellphone, setCompanyCellphone] = useState('');
+  const [zipCode, setZipCode] = useState('');
   const [street, setStreet] = useState('');
-  const [number, setNumber] = useState();
+  const [number, setNumber] = useState('');
   const [neighborhood, setNeighborhood] = useState('');
   const [city, setCity] = useState('');
   const [state, setState] = useState('');
   const [complement, setComplement] = useState('');
-  const [geolocationLatitude, setGeolocationLatitude] = useState();
-  const [geolocationLongitude, setGeolocationLongitude] = useState();
+  const [geolocationLatitude, setGeolocationLatitude] = useState('');
+  const [geolocationLongitude, setGeolocationLongitude] = useState('');
   const [generalAlert, setGeneralAlert] = useState(false)
+
+  const checkZipCode = async (zipCode: string) => {
+    console.log('Event:', zipCode);
+    const newZipCode = zipCode;
+    setZipCode(newZipCode);
+    console.log('New Zip Code:', newZipCode);
+
+    if (newZipCode.length === 8) {
+      try {
+        const response = await fetch(`https://viacep.com.br/ws/${newZipCode}/json/`);
+        const data = await response.json();
+        console.log('Response:', response);
+        console.log('Data:', data);
+        setStreet(data.logradouro);
+        setNeighborhood(data.bairro);
+        setCity(data.localidade);
+        setState(data.uf);
+      } catch (error) {
+        console.log('Error:', error);
+      }
+    }
+  };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -38,13 +61,32 @@ function PharmacyRegistration(){
       !geolocationLongitude
     ) {
       setGeneralAlert(true);
+      setTimeout(() => setGeneralAlert(false), 3500);
       return;
+    } else {
+      try {
+        const pharmacyData = {
+          corporateName,
+          cnpj,
+          tradeName,
+          companyEmail,
+          companyPhone,
+          companyCellphone,
+          zipCode,
+          street,
+          number,
+          neighborhood,
+          city,
+          state,
+          complement,
+          geolocationLatitude,
+          geolocationLongitude
+        };
+        localStorage.setItem('itemPharmacyData', JSON.stringify(pharmacyData));
+      } catch (error) {
+        console.error("Error during registration:", error);
+      }
     }
-
-    setTimeout(() => {
-      setGeneralAlert(false);
-    }, 3500);
-
   };
 
 
@@ -117,6 +159,7 @@ function PharmacyRegistration(){
                 value={zipCode}
                 onChange={setZipCode}
                 placeholder="Type the Zip Code"
+                onBlur={(value) => checkZipCode(value)}
               />
               <InputField
                 label="Street*"

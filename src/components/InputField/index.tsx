@@ -6,6 +6,7 @@ interface InputFieldProps {
   value: any;
   onChange: (value: any) => void;
   placeholder: string;
+  onBlur?: (value: any) => void;
 }
 
 function InputField({
@@ -16,6 +17,7 @@ function InputField({
   value,
   onChange,
   placeholder,
+  onBlur
 }: InputFieldProps) {
   return (
     <div>
@@ -26,7 +28,8 @@ function InputField({
         id={id}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => onChange(e.target.value)}
+        onChange={(e) => { console.log('Input Change Event:', e); onChange(e.target.value) }}
+        onBlur={(e) => { console.log('Input Blur Event:', e); onBlur && onBlur(e.target.value) }}
       />
     </div>
   );
