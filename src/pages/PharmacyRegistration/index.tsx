@@ -2,38 +2,41 @@ import React from "react";
 import { useState } from "react";
 import { InputField } from "../../components/InputField";
 
-function PharmacyRegistration(){
-  const [corporateName, setCorporateName] = useState('');
-  const [cnpj, setCnpj] = useState('');
-  const [tradeName, setTradeName] = useState('');
-  const [companyEmail, setCompanyEmail] = useState('');
-  const [companyPhone, setCompanyPhone] = useState('');
-  const [companyCellphone, setCompanyCellphone] = useState('');
-  const [zipCode, setZipCode] = useState('');
-  const [street, setStreet] = useState('');
-  const [number, setNumber] = useState('');
-  const [neighborhood, setNeighborhood] = useState('');
-  const [city, setCity] = useState('');
-  const [state, setState] = useState('');
-  const [complement, setComplement] = useState('');
-  const [geolocationLatitude, setGeolocationLatitude] = useState('');
-  const [geolocationLongitude, setGeolocationLongitude] = useState('');
-  const [generalAlert, setGeneralAlert] = useState(false)
+function PharmacyRegistration() {
+  const [form, setForm] = useState({
+    corporateName: '',
+    cnpj: '',
+    tradeName: '',
+    companyEmail: '',
+    companyPhone: '',
+    companyCellphone: '',
+    zipCode: '',
+    street: '',
+    number: '',
+    neighborhood: '',
+    city: '',
+    state: '',
+    complement: '',
+    geolocationLatitude: '',
+    geolocationLongitude: '',
+  })
+
+  const [generalAlert, setGeneralAlert] = useState(false);
 
   const checkZipCode = async (zipCode: string) => {
     const newZipCode = zipCode;
-    setZipCode(newZipCode);
+    zipCode(newZipCode);
 
     if (newZipCode.length === 8) {
       try {
         const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${newZipCode}`);
         const data = await response.json();
-        setStreet(data.street);
-        setNeighborhood(data.neighborhood);
-        setCity(data.city);
-        setState(data.state);
-        setGeolocationLatitude(data.location.coordinates.latitude);
-        setGeolocationLongitude(data.location.coordinates.longitude);
+        form.street(data.street);
+        form.neighborhood(data.neighborhood);
+        form.city(data.city);
+        form.state(data.state);
+        form.geolocationLatitude(data.location.coordinates.latitude);
+        form.geolocationLongitude(data.location.coordinates.longitude);
       } catch (error) {
         console.log('Error:', error);
       }
@@ -44,19 +47,19 @@ function PharmacyRegistration(){
     e.preventDefault();
 
     if (
-      !corporateName ||
-      !cnpj ||
-      !tradeName ||
-      !companyEmail ||
-      !companyCellphone ||
-      !zipCode ||
-      !street ||
-      !number ||
-      !neighborhood ||
-      !city ||
-      !state ||
-      !geolocationLatitude ||
-      !geolocationLongitude
+      !form.corporateName ||
+      !form.cnpj ||
+      !form.tradeName ||
+      !form.companyEmail ||
+      !form.companyCellphone ||
+      !form.zipCode ||
+      !form.street ||
+      !form.number ||
+      !form.neighborhood ||
+      !form.city ||
+      !form.state ||
+      !form.geolocationLatitude ||
+      !form.geolocationLongitude
     ) {
       setGeneralAlert(true);
       setTimeout(() => setGeneralAlert(false), 3500);
@@ -64,21 +67,21 @@ function PharmacyRegistration(){
     } else {
       try {
         const pharmacyData = {
-          corporateName,
-          cnpj,
-          tradeName,
-          companyEmail,
-          companyPhone,
-          companyCellphone,
-          zipCode,
-          street,
-          number,
-          neighborhood,
-          city,
-          state,
-          complement,
-          geolocationLatitude,
-          geolocationLongitude
+          form.corporateName,
+          form.cnpj,
+          form.tradeName,
+          form.companyEmail,
+          form.companyPhone,
+          form.companyCellphone,
+          form.zipCode,
+          form.street,
+          form.number,
+          form.neighborhood,
+          form.city,
+          form.state,
+          form.complement,
+          form.geolocationLatitude,
+          form.geolocationLongitude
         };
         localStorage.setItem('itemPharmacyData', JSON.stringify(pharmacyData));
       } catch (error) {
@@ -99,8 +102,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="corporateName"
                 id="corporatName"
-                value={corporateName}
-                onChange={setCorporateName}
+                value={form.corporateName}
+                onChange={(value) => setForm({...form, corporateName: value})}
                 placeholder="Type the Corporate Name"
               />
               <InputField
@@ -108,8 +111,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="cnpj"
                 id="cnpj"
-                value={cnpj}
-                onChange={setCnpj}
+                value={form.cnpj}
+                onChange={(value) => setForm({...form, cnpj: value})}
                 placeholder="Type the Corporate Taxpayers Registry (CNPJ)"
               />
               <InputField
@@ -117,8 +120,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="tradeName"
                 id="tradeName"
-                value={tradeName}
-                onChange={setTradeName}
+                value={form.tradeName}
+                onChange={(value) => setForm({...form, tradeName: value})}
                 placeholder="Type the Trade Name"
               />
               <InputField
@@ -126,8 +129,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="companyEmail"
                 id="companyEmail"
-                value={companyEmail}
-                onChange={setCompanyEmail}
+                value={form.companyEmail}
+                onChange={(value) => setForm({...form, companyEmail: value})}
                 placeholder="Type the Company E-mail"
               />
               <InputField
@@ -135,8 +138,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="companyPhone"
                 id="companyPhone"
-                value={companyPhone}
-                onChange={setCompanyPhone}
+                value={form.companyPhone}
+                onChange={(value) => setForm({...form, companyPhone: value})}
                 placeholder="Type the Company Phone"
               />
               <InputField
@@ -144,8 +147,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="companyCellphone"
                 id="companyCellphone"
-                value={companyCellphone}
-                onChange={setCompanyCellphone}
+                value={form.companyCellphone}
+                onChange={(value) => setForm({...form, companyCellphone: value})}
                 placeholder="Type the Company Cellphone"
               />
             <h2>Adress</h2>
@@ -154,8 +157,8 @@ function PharmacyRegistration(){
                 type="number"
                 name="zipCode"
                 id="zipCode"
-                value={zipCode}
-                onChange={setZipCode}
+                value={form.zipCode}
+                onChange={(value) => setForm({...form, zipCode: value})}
                 placeholder="Type the Zip Code"
                 onBlur={(value) => checkZipCode(value)}
               />
@@ -164,8 +167,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="street"
                 id="street"
-                value={street}
-                onChange={setStreet}
+                value={form.street}
+                onChange={(value) => setForm({...form, street: value})}
                 placeholder="Type the Street"
               />
               <InputField
@@ -173,8 +176,8 @@ function PharmacyRegistration(){
                 type="number"
                 name="number"
                 id="number"
-                value={number}
-                onChange={setNumber}
+                value={form.number}
+                onChange={(value) => setForm({...form, number: value})}
                 placeholder="Type the number"
               />
               <InputField
@@ -182,8 +185,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="neighborhood"
                 id="neighborhood"
-                value={neighborhood}
-                onChange={setNeighborhood}
+                value={form.neighborhood}
+                onChange={(value) => setForm({...form, neighborhood: value})}
                 placeholder="Type the neighborhood"
               />
               <InputField
@@ -191,8 +194,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="city"
                 id="city"
-                value={city}
-                onChange={setCity}
+                value={form.city}
+                onChange={(value) => setForm({...form, city: value})}
                 placeholder="Type the city"
               />
               <InputField
@@ -200,8 +203,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="state"
                 id="state"
-                value={state}
-                onChange={setState}
+                value={form.state}
+                onChange={(value) => setForm({...form, state: value})}
                 placeholder="Type the State"
               />
               <InputField
@@ -209,8 +212,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="complement"
                 id="complement"
-                value={complement}
-                onChange={setComplement}
+                value={form.complement}
+                onChange={(value) => setForm({...form, complement: value})}
                 placeholder="Type the complement"
               />
               <InputField
@@ -218,8 +221,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="geolocationLatitude"
                 id="geolocationLatitude"
-                value={geolocationLatitude}
-                onChange={setGeolocationLatitude}
+                value={form.geolocationLatitude}
+                onChange={(value) => setForm({...form, geolocationLatitude: value})}
                 placeholder="Type the Geolocation Latitude"
               />
               <InputField
@@ -227,8 +230,8 @@ function PharmacyRegistration(){
                 type="text"
                 name="geolocationLongitude"
                 id="geolocationLongitude"
-                value={geolocationLongitude}
-                onChange={setGeolocationLongitude}
+                value={form.geolocationLongitude}
+                onChange={(value) => setForm({...form, geolocationLongitude: value})}
                 placeholder="Type the Geolocation Longitude"
               />
               <p>* fields must be filled.</p>
