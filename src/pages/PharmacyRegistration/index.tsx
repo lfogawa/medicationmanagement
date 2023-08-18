@@ -21,21 +21,19 @@ function PharmacyRegistration(){
   const [generalAlert, setGeneralAlert] = useState(false)
 
   const checkZipCode = async (zipCode: string) => {
-    console.log('Event:', zipCode);
     const newZipCode = zipCode;
     setZipCode(newZipCode);
-    console.log('New Zip Code:', newZipCode);
 
     if (newZipCode.length === 8) {
       try {
-        const response = await fetch(`https://viacep.com.br/ws/${newZipCode}/json/`);
+        const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${newZipCode}`);
         const data = await response.json();
-        console.log('Response:', response);
-        console.log('Data:', data);
-        setStreet(data.logradouro);
-        setNeighborhood(data.bairro);
-        setCity(data.localidade);
-        setState(data.uf);
+        setStreet(data.street);
+        setNeighborhood(data.neighborhood);
+        setCity(data.city);
+        setState(data.state);
+        setGeolocationLatitude(data.location.coordinates.latitude);
+        setGeolocationLongitude(data.location.coordinates.longitude);
       } catch (error) {
         console.log('Error:', error);
       }
