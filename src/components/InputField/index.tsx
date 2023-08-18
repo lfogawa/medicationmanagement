@@ -28,8 +28,8 @@ function InputField({
         id={id}
         placeholder={placeholder}
         value={value}
-        onChange={(e) => { console.log('Input Change Event:', e); onChange(e.target.value) }}
-        onBlur={(e) => { console.log('Input Blur Event:', e); onBlur && onBlur(e.target.value) }}
+        onChange={(e) => onChange(e.target.value)}
+        onBlur={(e) => onBlur && onBlur(e.target.value)}
       />
     </div>
   );

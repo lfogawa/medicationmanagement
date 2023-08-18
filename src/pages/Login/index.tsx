@@ -3,16 +3,24 @@ import { useNavigate } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
 
 function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [emailAlert, setEmailAlert] = useState('');
-  const [passwordAlert, setPasswordAlert] = useState('');
-  const [emailPasswordAlert, setEmailPasswordAlert] = useState('');
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const [alerts, setAlerts] = useState({
+    emailAlert: '',
+    passwordAlert: '',
+    emailPasswordAlert: '',
+  })
 
   const clearAlerts = () => {
-    setEmailAlert('');
-    setPasswordAlert('');
-    setEmailPasswordAlert('');
+    setAlerts((previousData) => ({
+      ...previousData,
+      emailAlert: '',
+      passwordAlert: '',
+      emailPasswordAlert: '',
+    }))
   };
 
   const navigate = useNavigate()
@@ -22,17 +30,34 @@ function Login() {
 
     clearAlerts();
 
-    if (!email && !password) {
-      setEmailPasswordAlert('Please, type your e-mail and password!');
-    } else if (!email) {
-      setEmailAlert('Please, type your e-mail!');
-    } else if (!password) {
-      setPasswordAlert('Please, type your password!');
-    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(email)) {
-      setEmailAlert('Please, type a valid e-mail!');
+    if (!form.email && !form.password) {
+      setAlerts((previousData) => ({
+        ...previousData,
+        emailPasswordAlert: 'Please, type your e-mail and password.'
+      }));
+    } else if (!form.email) {
+      setAlerts((previousData) => ({
+        ...previousData,
+        emailAlert: 'Please, type your e-mail.'
+      }));
+    } else if (!form.password) {
+      setAlerts((previousData) => ({
+        ...previousData,
+        passwordAlert: 'Please, type your password.'
+      }));
+    } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) {
+      setAlerts((previousData) => ({
+        ...previousData,
+        emailAlert: 'Please, type a valid e-mail.',
+      }));
+    } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password)) {
+      setAlerts((previousData) => ({
+        ...previousData,
+        passwordAlert: 'Password must have at least 8 characters, including letters and numbers.',
+      }));
     } else {
       navigate('/map');
-    };
+    }
 
     setTimeout(clearAlerts, 3500);
 
@@ -48,8 +73,8 @@ function Login() {
             type="text"
             name="email"
             id="email"
-            value={email}
-            onChange={setEmail}
+            value={form.email}
+            onChange={(value) => setForm({...form, email: value})}
             placeholder="Type your E-mail"
           />
           <InputField
@@ -57,17 +82,17 @@ function Login() {
             type="password"
             name="password"
             id="password"
-            value={password}
-            onChange={setPassword}
+            value={form.password}
+            onChange={(value) => setForm({...form, password: value})}
             placeholder="Type your Password"
           />
           <button type='submit'>Login</button>
         </form>
       </div>
       <div>
-        <p>{emailAlert}</p>
-        <p>{passwordAlert}</p>
-        <p>{emailPasswordAlert}</p>
+        <p>{alerts.emailAlert}</p>
+        <p>{alerts.passwordAlert}</p>
+        <p>{alerts.emailPasswordAlert}</p>
       </div>
     </>
   );
