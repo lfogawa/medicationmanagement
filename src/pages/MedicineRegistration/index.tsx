@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
@@ -20,6 +20,16 @@ function MedicineRegistration(){
     medicineRegistered: false
   });
   
+  useEffect(() => {
+    setAlert({
+      general: false,
+      success: false,
+      failure: false,
+      medicineRegistered: false
+    });
+  }, []);
+
+
   const types = ['Alopático', 'de Referência', 'Genérico', 'Similar', 'Fitoterápico', 'Homeopático', 'Manipulado', 'Fracionado', 'Biológico']
 
 
