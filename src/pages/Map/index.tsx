@@ -1,23 +1,22 @@
 import {useState, useEffect} from "react"
-import {api} from "../../services/api"
-import { StorageProps } from "./interface"
 import { PageStorageMain } from "./styled"
 import { Leaflet } from "../../components/Leaflet"
+import { LeafletProps } from "../../components/Leaflet/interface";
 
 function Map() {
-  const [ storages, setStorages ] = useState<StorageProps[]>([])
+  const [ pharmacy, setPharmacy ] = useState<LeafletProps[]>([])
   const [ loading, setLoading ] = useState(false)
 
   useEffect(() => {
-    const load = async () => {
       setLoading(true)
-      const response = await api.get("/storages")
-      console.log(response)
-      setStorages(response.data)
-      setLoading(false)
-    }
-    load()
-  }, [])
+      const storedPharmacyData = localStorage.getItem('itemPharmacyData');
+
+      if (storedPharmacyData) {
+        setPharmacy([JSON.parse(storedPharmacyData)]);
+      }
+  
+      setLoading(false);
+    }, []);
 
   if(loading) {
     return (
@@ -27,21 +26,22 @@ function Map() {
 
   return (
     <>
-      <PageStorageMain>
-        {storages.length > 0 ? (
-          storages.map(({ name, id, lat, lon }) => (
-            <div key={id}>
-              <p>Id: {id}</p>
-              <p>Nome do depósito: {name}</p>
-              <p>Latitude: {lat}</p>
-              <p>Longitude: {lon}</p>
+     <PageStorageMain>
+        {pharmacy.length > 0 ? (
+          pharmacy.map(({ corporateName, cnpj, tradeName }) => (
+            <div key={cnpj}>
+              <p>Corporate Name: {corporateName}</p>
+              <p>CNPJ: {cnpj}</p>
+              <p>Trade Name: {tradeName}</p>
+              {/* Renderizar outros dados aqui */}
             </div>
           ))
         ) : (
-          <p>Não tem depósitos cadastrados</p>
+          <p>Não há dados de farmácia armazenados</p>
         )}
       </PageStorageMain>
-      <Leaflet storages={storages} />
+      {/* Renderizar o componente Leaflet com os dados da farmácia */}
+      <Leaflet pharmacy={pharmacy} />
     </>
   );
 }

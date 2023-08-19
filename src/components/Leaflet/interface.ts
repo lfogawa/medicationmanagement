@@ -1,15 +1,22 @@
 import { LatLngExpression } from "leaflet";
 
 export interface LeafletProps {
-  storages: any,
+  pharmacy: any,
   position: LatLngExpression,
-  address: {
-    zip: string;
-    street: string;
-    numberStreet: string;
-    district: string;
-    complement?: string;
-    city: string;
-    uf: string;
-  }
+  id?: number,
+  corporateName?: string,
+  cnpj?: number,
+  tradeName?: string,
+  companyEmail?: string,
+  companyPhone?: number,
+  companyCellphone?: number,
+  zipCode?: number,
+  street?: string,
+  number?: number,
+  neighborhood?: string,
+  city?: string,
+  state?: string,
+  complement?: string,
+  geolocationLatitude?: number,
+  geolocationLongitude?: number,
 }
