@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { InputField } from "../../components/InputField";
 
 function PharmacyRegistration() {
@@ -21,10 +21,23 @@ function PharmacyRegistration() {
     geolocationLongitude: '',
   })
 
-  const [generalAlert, setGeneralAlert] = useState(false);
-  const [successAlert, setSuccessAlert] = useState(false);
-  const [failureAlert, setFailureAlert] = useState(false)
+  const [alert, setAlert] = useState({
+    general: false,
+    success: false,
+    failure: false,
+    pharmacyRegistered: false
+  });
 
+  useEffect(() => {
+    setAlert({
+      general: false,
+      success: false,
+      failure: false,
+      pharmacyRegistered: false
+    });
+  }, []);
+
+  // Autofill adress informations using Zip Code (Brasil API)
   const checkZipCode = async (zipCode: string) => {
     const newZipCode = zipCode;
     setForm((previousData) => ({
@@ -51,9 +64,11 @@ function PharmacyRegistration() {
     }
   };
 
+  // Onsubmit check required fields and insert localstorage information if not repeated
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    // Check if required fields are filled
     if (
       !form.corporateName ||
       !form.cnpj ||
@@ -69,12 +84,13 @@ function PharmacyRegistration() {
       !form.geolocationLatitude ||
       !form.geolocationLongitude
     ) {
-      setGeneralAlert(true);
-      setTimeout(() => setGeneralAlert(false), 3500);
+      setAlert({ ...alert, general: true });
+      setTimeout(() => setAlert({ ...alert, general: false }), 3500);
       return;
     } else {
       try {
-        const pharmacyData = {
+        // Localstorage pharmacy informations
+        const newPharmacyData = {
           corporateName: form.corporateName,
           cnpj: form.cnpj,
           tradeName: form.tradeName,
@@ -91,15 +107,58 @@ function PharmacyRegistration() {
           geolocationLatitude: form.geolocationLatitude,
           geolocationLongitude: form.geolocationLongitude
         };
-        localStorage.setItem('itemPharmacyData', JSON.stringify(pharmacyData));
 
-        setSuccessAlert(true);
-        setTimeout(() => setSuccessAlert(false), 3500);
+        // Get existing pharmacy data array from localStorage
+        const existingPharmacy = JSON.parse(localStorage.getItem('itemPharmacyData') || '[]');
+
+        // Check if the new pharmacy data is already registered
+        const isMedicineAlreadyRegistered = existingPharmacy.some(
+          (pharmacy: any) =>
+            pharmacy.corporateName === newPharmacyData.corporateName &&
+            pharmacy.cnpj === newPharmacyData.cnpj &&
+            pharmacy.tradeName === newPharmacyData.tradeName &&
+            pharmacy.zipCode === newPharmacyData.zipCode &&
+            pharmacy.number === newPharmacyData.number
+        );
+
+        if (isMedicineAlreadyRegistered) {
+          // Show alert if pharmacy data is already registered
+          setAlert({ ...alert, pharmacyRegistered: true });
+          setTimeout(() => setAlert({ ...alert, pharmacyRegistered: false }), 3500);
+        } else {
+          // Update localStorage with the updated array (appending new data)
+          localStorage.setItem('itemPharmacyData', JSON.stringify([...existingPharmacy, newPharmacyData]));
+
+          // Show success alert
+          setAlert({ ...alert, success: true });
+          setTimeout(() => setAlert({ ...alert, success: false }), 3500);
+        }
+        
+        // Reset form
+        setForm({
+          corporateName: '',
+          cnpj: '',
+          tradeName: '',
+          companyEmail: '',
+          companyPhone: '',
+          companyCellphone: '',
+          zipCode: '',
+          street: '',
+          number: '',
+          neighborhood: '',
+          city: '',
+          state: '',
+          complement: '',
+          geolocationLatitude: '',
+          geolocationLongitude: '',
+        })
+
         return;
       } catch (error) {
+        // Show error alert
         console.error("Error during registration:", error);
-        setFailureAlert(true);
-        setTimeout(() => setFailureAlert(false), 3500);
+        setAlert({ ...alert, failure: true });
+        setTimeout(() => setAlert({ ...alert, failure: false }), 3500);
         return;
       }
     }
@@ -252,9 +311,10 @@ function PharmacyRegistration() {
               <p>* fields must be filled.</p>
             <button type='submit'>Register</button>
           </form>
-          {generalAlert && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
-          {successAlert && <p style={{ color: 'green' }}>Registration successfull!</p>}
-          {failureAlert && <p style={{ color: 'red' }}>Registration failure.</p>}
+          {alert.general && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
+          {alert.success && <p style={{ color: 'green' }}>Registration successfull!</p>}
+          {alert.failure && <p style={{ color: 'red' }}>Registration failure.</p>}
+          {alert.pharmacyRegistered && <p style={{ color: 'red' }}>Pharmacy already registered.</p>}
       </div>
     </>
   )
