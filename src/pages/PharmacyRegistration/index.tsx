@@ -22,23 +22,31 @@ function PharmacyRegistration() {
   })
 
   const [generalAlert, setGeneralAlert] = useState(false);
+  const [successAlert, setSuccessAlert] = useState(false);
+  const [failureAlert, setFailureAlert] = useState(false)
 
   const checkZipCode = async (zipCode: string) => {
     const newZipCode = zipCode;
-    zipCode(newZipCode);
+    setForm((previousData) => ({
+      ...previousData,
+      zipCode: newZipCode
+    }));
 
     if (newZipCode.length === 8) {
       try {
         const response = await fetch(`https://brasilapi.com.br/api/cep/v2/${newZipCode}`);
         const data = await response.json();
-        form.street(data.street);
-        form.neighborhood(data.neighborhood);
-        form.city(data.city);
-        form.state(data.state);
-        form.geolocationLatitude(data.location.coordinates.latitude);
-        form.geolocationLongitude(data.location.coordinates.longitude);
+        setForm((previousData) => ({
+          ...previousData,
+          street: data.street,
+          neighborhood: data.neighborhood,
+          city: data.city,
+          state: data.state,
+          geolocationLatitude: data.location.coordinates.latitude,
+          geolocationLongitude: data.location.coordinates.longitude
+        }))
       } catch (error) {
-        console.log('Error:', error);
+        console.error("Error during fetch:", error);
       }
     }
   };
@@ -67,25 +75,32 @@ function PharmacyRegistration() {
     } else {
       try {
         const pharmacyData = {
-          form.corporateName,
-          form.cnpj,
-          form.tradeName,
-          form.companyEmail,
-          form.companyPhone,
-          form.companyCellphone,
-          form.zipCode,
-          form.street,
-          form.number,
-          form.neighborhood,
-          form.city,
-          form.state,
-          form.complement,
-          form.geolocationLatitude,
-          form.geolocationLongitude
+          corporateName: form.corporateName,
+          cnpj: form.cnpj,
+          tradeName: form.tradeName,
+          companyEmail: form.companyEmail,
+          companyPhone: form.companyPhone,
+          companyCellphone: form.companyCellphone,
+          zipCode: form.zipCode,
+          street: form.street,
+          number: form.number,
+          neighborhood: form.neighborhood,
+          city: form.city,
+          state: form.state,
+          complement: form.complement,
+          geolocationLatitude: form.geolocationLatitude,
+          geolocationLongitude: form.geolocationLongitude
         };
         localStorage.setItem('itemPharmacyData', JSON.stringify(pharmacyData));
+
+        setSuccessAlert(true);
+        setTimeout(() => setSuccessAlert(false), 3500);
+        return;
       } catch (error) {
         console.error("Error during registration:", error);
+        setFailureAlert(true);
+        setTimeout(() => setFailureAlert(false), 3500);
+        return;
       }
     }
   };
@@ -108,7 +123,7 @@ function PharmacyRegistration() {
               />
               <InputField
                 label="Corporate Taxpayers Registry (CNPJ)*"
-                type="text"
+                type="number"
                 name="cnpj"
                 id="cnpj"
                 value={form.cnpj}
@@ -135,7 +150,7 @@ function PharmacyRegistration() {
               />
               <InputField
                 label="Company Phone (optional)"
-                type="text"
+                type="number"
                 name="companyPhone"
                 id="companyPhone"
                 value={form.companyPhone}
@@ -144,7 +159,7 @@ function PharmacyRegistration() {
               />
               <InputField
                 label="Company Cellphone*"
-                type="text"
+                type="number"
                 name="companyCellphone"
                 id="companyCellphone"
                 value={form.companyCellphone}
@@ -154,11 +169,11 @@ function PharmacyRegistration() {
             <h2>Adress</h2>
               <InputField
                 label="Zip Code*"
-                type="number"
+                type="text"
                 name="zipCode"
                 id="zipCode"
                 value={form.zipCode}
-                onChange={(value) => setForm({...form, zipCode: value})}
+                onChange={(value) => setForm({...form, zipCode: value.replace(/\D/g, '')})}
                 placeholder="Type the Zip Code"
                 onBlur={(value) => checkZipCode(value)}
               />
@@ -218,7 +233,7 @@ function PharmacyRegistration() {
               />
               <InputField
                 label="Geolocation Latitude*"
-                type="text"
+                type="number"
                 name="geolocationLatitude"
                 id="geolocationLatitude"
                 value={form.geolocationLatitude}
@@ -227,7 +242,7 @@ function PharmacyRegistration() {
               />
               <InputField
                 label="Geolocation Longitude*"
-                type="text"
+                type="number"
                 name="geolocationLongitude"
                 id="geolocationLongitude"
                 value={form.geolocationLongitude}
@@ -238,6 +253,8 @@ function PharmacyRegistration() {
             <button type='submit'>Register</button>
           </form>
           {generalAlert && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
+          {successAlert && <p style={{ color: 'green' }}>Registration successfull!</p>}
+          {failureAlert && <p style={{ color: 'red' }}>Registration failure.</p>}
       </div>
     </>
   )

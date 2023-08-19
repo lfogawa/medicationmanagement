@@ -4,7 +4,7 @@ import { MapContainerStyled, MarkerStyled, PopupStyled } from "./styled";
 
 function Leaflet({ storages }: LeafletProps) {
   return (
-    <MapContainerStyled center={[storages[0].lat, storages[0].lon]} zoom={13}>
+    <MapContainerStyled center={[-27.5944418, -48.52081496678028]} zoom={13}>
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
