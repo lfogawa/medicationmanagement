@@ -4,15 +4,21 @@ import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
 
 function MedicineRegistration(){
-  const [medicineName, setMedicineName] = useState('');
-  const [labName, setLabName] = useState('');
-  const [dosage, setDosage] = useState();
-  const [description, setDescription] = useState('');
-  const [unitPrice, setUnitPrice] = useState();
-  const [type, setType] = useState('');
-  const [generalAlert, setGeneralAlert] = useState(false);
-  const [successAlert, setSuccessAlert] = useState(false);
-  const [failureAlert, setFailureAlert] = useState(false)
+  const [form, setForm] = useState({
+    medicineName: '',
+    labName: '',
+    dosage: '',
+    description: '',
+    unitPrice: '',
+    type: '',
+  });
+
+  const [alert, setAlert] = useState({
+    general: false,
+    success: false,
+    failure: false,
+    medicineRegistered: false
+  });
   
   const types = ['Alopático', 'de Referência', 'Genérico', 'Similar', 'Fitoterápico', 'Homeopático', 'Manipulado', 'Fracionado', 'Biológico']
 
@@ -21,34 +27,57 @@ function MedicineRegistration(){
     e.preventDefault();
 
     if (
-      !medicineName ||
-      !labName ||
-      !dosage ||
-      !unitPrice ||
-      type === ""
+      !form.medicineName ||
+      !form.labName ||
+      !form.dosage ||
+      !form.unitPrice ||
+      form.type === ""
     ) {
-      setGeneralAlert(true);
-      setTimeout(() => setGeneralAlert(false), 3500);
+      setAlert({ ...alert, general: true });
+      setTimeout(() => setAlert({ ...alert, general: false }), 3500);
       return;
     } else {
       try {
-        const medicineData = {
-          medicineName,
-          labName,
-          dosage,
-          description,
-          unitPrice,
-          type
+        const newMedicine = {
+          medicineName: form.medicineName,
+          labName: form.labName,
+          dosage: form.dosage,
+          description: form.description,
+          unitPrice: form.unitPrice,
+          type: form.type
         };
-        localStorage.setItem('itemMedicineData', JSON.stringify(medicineData));
 
-        setSuccessAlert(true);
-        setTimeout(() => setSuccessAlert(false), 3500);
+        // Get existing medicine data array from localStorage
+        const existingMedicine = JSON.parse(localStorage.getItem('itemMedicineData') || '[]');
+
+        // Check if the new medicine data is already registered
+        const isMedicineAlreadyRegistered = existingMedicine.some(
+          (medicine: any) =>
+            medicine.medicineName === newMedicine.medicineName &&
+            medicine.labName === newMedicine.labName &&
+            medicine.dosage === newMedicine.dosage &&
+            medicine.unitPrice === newMedicine.unitPrice &&
+            medicine.type === newMedicine.type
+        );
+
+        if (isMedicineAlreadyRegistered) {
+          // Show alert if medicine data is already registered
+          setAlert({ ...alert, medicineRegistered: true });
+          setTimeout(() => setAlert({ ...alert, medicineRegistered: false }), 3500);
+        } else {
+          // Update localStorage with the updated array (appending new data)
+          localStorage.setItem('itemMedicineData', JSON.stringify([...existingMedicine, newMedicine]));
+
+          // Show success alert
+          setAlert({ ...alert, success: true });
+          setTimeout(() => setAlert({ ...alert, success: false }), 3500);
+        }
+
         return;
       } catch (error) {
         console.error("Error during registration:", error);
-        setFailureAlert(true);
-        setTimeout(() => setFailureAlert(false), 3500);
+        setAlert({ ...alert, failure: true });
+        setTimeout(() => setAlert({ ...alert, failure: false }), 3500);
         return;
       }
     }
@@ -66,8 +95,8 @@ function MedicineRegistration(){
                 type="text"
                 name="medicineName"
                 id="corporatName"
-                value={medicineName}
-                onChange={setMedicineName}
+                value={form.medicineName}
+                onChange={(value) => setForm({...form, medicineName: value})}
                 placeholder="Type the Medicine Name"
               />
               <InputField
@@ -75,8 +104,8 @@ function MedicineRegistration(){
                 type="text"
                 name="labName"
                 id="labName"
-                value={labName}
-                onChange={setLabName}
+                value={form.labName}
+                onChange={(value) => setForm({...form, labName: value})}
                 placeholder="Type the Lab Name"
               />
               <InputField
@@ -84,16 +113,16 @@ function MedicineRegistration(){
                 type="number"
                 name="dosage"
                 id="dosage"
-                value={dosage}
-                onChange={setDosage}
+                value={form.dosage}
+                onChange={(value) => setForm({...form, dosage: value})}
                 placeholder="Type the Dosage"
               />
               <TextAreaField
                 label="Description"
                 name="description"
                 id="description"
-                value={description}
-                onChange={setDescription}
+                value={form.description}
+                onChange={(value) => setForm({...form, description: value})}
                 placeholder="Type the Description"
               />
               <InputField
@@ -101,25 +130,26 @@ function MedicineRegistration(){
                 type="number"
                 name="unitprice"
                 id="unitprice"
-                value={unitPrice}
-                onChange={setUnitPrice}
+                value={form.unitPrice}
+                onChange={(value) => setForm({...form, unitPrice: value})}
                 placeholder="Type the Unit Price"
               />
               <SelectField
                 label="Type*"
                 name="type"
                 id="type"
-                value={type}
-                onChange={setType}
+                value={form.type}
+                onChange={(value) => setForm({...form, type: value})}
                 options={types}
               />
               <p>* fields must be filled.</p>
             <button type='submit'>Register</button>
           </form>
         <div>
-          {generalAlert && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
-          {successAlert && <p style={{ color: 'green' }}>Registration successfull!</p>}
-          {failureAlert && <p style={{ color: 'red' }}>Registration failure.</p>}
+          {alert.general && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
+          {alert.success && <p style={{ color: 'green' }}>Registration successfull!</p>}
+          {alert.failure && <p style={{ color: 'red' }}>Registration failure.</p>}
+          {alert.medicineRegistered && <p style={{ color: 'red' }}>Medicine already registered.</p>}
         </div>
       </div>
     </>
