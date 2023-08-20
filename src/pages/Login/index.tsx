@@ -23,7 +23,7 @@ function Login() {
     }))
   };
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -57,6 +57,8 @@ function Login() {
       }));
     } else {
       navigate('/map');
+
+      localStorage.setItem('user', JSON.stringify(form));
     }
 
     setTimeout(clearAlerts, 3500);

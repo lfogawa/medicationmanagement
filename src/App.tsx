@@ -1,13 +1,16 @@
-import { RoutesApp } from './routes'
-import 'leaflet/dist/leaflet.css'
+import { AuthProvider } from "./context";
+import { RoutesApp } from "./routes";
+import { BrowserRouter } from "react-router-dom";
+import "leaflet/dist/leaflet.css";
 
 function App() {
-
   return (
-    <>
-      <RoutesApp />
-    </>
-  )
+    <BrowserRouter>
+      <AuthProvider>
+        <RoutesApp />
+      </AuthProvider>
+    </BrowserRouter>
+  );
 }
 
-export default App
+export default App;
