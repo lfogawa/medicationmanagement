@@ -1,9 +1,8 @@
 import { LatLngExpression } from "leaflet";
 
-export interface LeafletProps {
-  pharmacy: any,
+export interface MapProps {
+  pharmacies: any,
   position: LatLngExpression,
-  id?: number,
   corporateName?: string,
   cnpj?: number,
   tradeName?: string,

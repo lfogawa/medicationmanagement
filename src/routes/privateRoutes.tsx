@@ -1,5 +1,5 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { Map } from "../pages/map";
+import { PharmacyList } from "../pages/pharmacylist";
 import { PharmacyRegistration } from "../pages/pharmacyRegistration";
 import { MedicineRegistration } from "../pages/medicineRegistration";
 import { MedicineList } from "../pages/medicineList";
@@ -11,7 +11,7 @@ function PrivateRoutes () {
     <>
       <Header />
       <Routes>
-        <Route path="/map" element={<Map />} />
+        <Route path="/map" element={<PharmacyList />} />
         <Route path="/pharmacyRegistration" element={<PharmacyRegistration />} />
         <Route path="/medicineRegistration" element={<MedicineRegistration />} />
         <Route path="/medicineList" element={<MedicineList />} />
