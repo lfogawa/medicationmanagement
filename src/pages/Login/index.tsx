@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
+import { LoginHeader } from '../../components/LoginHeader';
 
 function Login() {
   const [form, setForm] = useState({
@@ -68,6 +69,7 @@ function Login() {
   return (
     <>
       <div>
+        <LoginHeader />
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
           <InputField
