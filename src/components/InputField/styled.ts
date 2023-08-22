@@ -1,19 +1,24 @@
 import styled from "styled-components";
 import { StylesProps } from "../../assets/styles/interface";
 
-export const StyledDivInputField = styled.div<StylesProps>`
+export const InputFieldDivStyled = styled.div<StylesProps>`
+  margin: auto;
   padding: 1em;
   display: flex;
-  justify-content: left;
-  width: 100%;
-  font-size: 1.5em;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1em;
+  font-weight: bold;
 
   label {
     margin: 10px;
+
   }
 
 
   input {
+    padding: 6px;
+    border-radius: 10px;
 
   }
 `

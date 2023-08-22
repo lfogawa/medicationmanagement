@@ -1,5 +1,5 @@
 import { InputFieldProps } from "./interface";
-import { StyledDivInputField } from "./styled";
+import { InputFieldDivStyled } from "./styled";
 
 function InputField({
   label,
@@ -12,7 +12,7 @@ function InputField({
   onBlur
 }: InputFieldProps) {
   return (
-    <StyledDivInputField>
+    <InputFieldDivStyled>
       <label htmlFor={id}>{label}</label>
       <input
         type={type}
@@ -23,7 +23,7 @@ function InputField({
         onChange={(e) => onChange(e.target.value)}
         onBlur={(e) => onBlur && onBlur(e.target.value)}
       />
-    </StyledDivInputField>
+    </InputFieldDivStyled>
   );
 }
 

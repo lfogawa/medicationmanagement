@@ -12,4 +12,9 @@ export interface StylesProps{
   fontSize?: string;
   fontWeight?: string;
   justifyContent?: string;
+  borderRadius?: string;
+  borderWidth?: string;
+  borderColor?: string;
+  borderStyle?: string;
+  boxShadow?: string;
 }

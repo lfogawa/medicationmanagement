@@ -1,12 +1,13 @@
 import logo from "../../assets/svg/logo.svg"
+import { LoginHeaderStyled } from "./styled"
 
 function LoginHeader() {
   return (
     <>
-      <header>
-        <img src={logo} alt="logo" width={50} />
+      <LoginHeaderStyled>
+        <img src={logo} alt="logo"/>
         <p>Medication Management</p>
-      </header>
+      </LoginHeaderStyled>
     </>
   )
 }

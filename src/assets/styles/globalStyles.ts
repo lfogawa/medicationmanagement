@@ -17,11 +17,16 @@ export default createGlobalStyle<StylesProps>`
         color: #084420;
         display: flex;
         justify-content: center;
-        font-size: 6em;
+        font-size: 2em;
    }
 
    form{
         margin: 1em;
         padding: 1em;
+   }
+
+   button{
+        font-size: 1em;
+        padding: 10px;
    }
 `

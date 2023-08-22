@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
 import { LoginHeader } from '../../components/LoginHeader';
+import { LoginDivStyled } from './styled';
 
 function Login() {
   const [form, setForm] = useState({
@@ -68,36 +69,36 @@ function Login() {
 
   return (
     <>
-      <div>
-        <LoginHeader />
-        <h1>Login</h1>
-        <form onSubmit={handleSubmit}>
-          <InputField
-            label="E-mail"
-            type="text"
-            name="email"
-            id="email"
-            value={form.email}
-            onChange={(value) => setForm({...form, email: value})}
-            placeholder="Type your E-mail"
-          />
-          <InputField
-            label="Password"
-            type="password"
-            name="password"
-            id="password"
-            value={form.password}
-            onChange={(value) => setForm({...form, password: value})}
-            placeholder="Type your Password"
-          />
-          <button type='submit'>Login</button>
-        </form>
-      </div>
-      <div>
-        <p>{alerts.emailAlert}</p>
-        <p>{alerts.passwordAlert}</p>
-        <p>{alerts.emailPasswordAlert}</p>
-      </div>
+      <LoginHeader />
+        <LoginDivStyled>
+          <h1>Login</h1>
+          <form onSubmit={handleSubmit}>
+            <InputField
+              label="E-mail"
+              type="text"
+              name="email"
+              id="email"
+              value={form.email}
+              onChange={(value) => setForm({...form, email: value})}
+              placeholder="Type your E-mail"
+            />
+            <InputField
+              label="Password"
+              type="password"
+              name="password"
+              id="password"
+              value={form.password}
+              onChange={(value) => setForm({...form, password: value})}
+              placeholder="Type your Password"
+            />
+            <button type='submit'>Login</button>
+          </form>
+          <div>
+            <p>{alerts.emailAlert}</p>
+            <p>{alerts.passwordAlert}</p>
+            <p>{alerts.emailPasswordAlert}</p>
+          </div>
+        </LoginDivStyled>
     </>
   );
 }
