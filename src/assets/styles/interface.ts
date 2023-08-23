@@ -17,4 +17,9 @@ export interface StylesProps{
   borderColor?: string;
   borderStyle?: string;
   boxShadow?: string;
+  bottom?: string;
+  filter?: string;
+  active?: boolean;
+  transitionDuration?: string;
+  transform?: string;
 }

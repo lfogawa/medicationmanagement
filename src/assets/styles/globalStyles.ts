@@ -14,19 +14,15 @@ export default createGlobalStyle<StylesProps>`
    }
 
    h1{
-        color: #084420;
-        display: flex;
-        justify-content: center;
-        font-size: 2em;
+          color: #31955F;
+          display: flex;
+          justify-content: center;
+          font-size: 2em;
    }
 
    form{
-        margin: 1em;
-        padding: 1em;
-   }
-
-   button{
-        font-size: 1em;
-        padding: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
    }
 `

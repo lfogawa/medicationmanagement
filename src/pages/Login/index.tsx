@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
 import { LoginHeader } from '../../components/LoginHeader';
-import { LoginDivStyled } from './styled';
+import { LoginAlertDivStyled, LoginContainerStyled, LoginDivStyled } from './styled';
+import { LoginFooter } from '../../components/LoginFooter';
+import { Button } from '../../components/Button';
 
 function Login() {
   const [form, setForm] = useState({
@@ -70,6 +72,7 @@ function Login() {
   return (
     <>
       <LoginHeader />
+      <LoginContainerStyled>
         <LoginDivStyled>
           <h1>Login</h1>
           <form onSubmit={handleSubmit}>
@@ -91,14 +94,18 @@ function Login() {
               onChange={(value) => setForm({...form, password: value})}
               placeholder="Type your Password"
             />
-            <button type='submit'>Login</button>
+            <Button type='submit'>
+              Login
+            </Button>
           </form>
-          <div>
+          <LoginAlertDivStyled>
             <p>{alerts.emailAlert}</p>
             <p>{alerts.passwordAlert}</p>
             <p>{alerts.emailPasswordAlert}</p>
-          </div>
+          </LoginAlertDivStyled>
         </LoginDivStyled>
+      </LoginContainerStyled>
+      <LoginFooter />  
     </>
   );
 }

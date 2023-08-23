@@ -12,13 +12,14 @@ export const InputFieldDivStyled = styled.div<StylesProps>`
 
   label {
     margin: 10px;
-
   }
 
 
   input {
+    text-align: center;
     padding: 6px;
     border-radius: 10px;
-
+    border-width: 1px;
+    width: 45vw;
   }
 `
