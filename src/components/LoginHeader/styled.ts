@@ -11,15 +11,15 @@ export const LoginHeaderStyled = styled.header<StylesProps>`
   justify-content: center;
   align-items: center;
 
-
   img{
     width: 5em;
     margin: 1em;
   }
 
-  p{
+  h1{
     font-size: 2.5em;
     font-weight: bold;
-    color: #084420;
+    color: #31955F;
   }
+
 `

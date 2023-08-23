@@ -74,7 +74,7 @@ function Login() {
       <LoginHeader />
       <LoginContainerStyled>
         <LoginDivStyled>
-          <h1>Login</h1>
+          <h2>Login</h2>
           <form onSubmit={handleSubmit}>
             <InputField
               label="E-mail"

@@ -10,11 +10,12 @@ export const LoginDivStyled = styled.div<StylesProps>`
   padding: 2em;
   width: 70%;
   border-radius: 15px;
-  box-shadow: 18px 18px 41px 10px rgba(0,0,0,0.3);
+  box-shadow: 12px 12px 20px 5px rgba(0,0,0,0.3);
   height: 60vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+
 `
 
 export const LoginAlertDivStyled = styled.div<StylesProps>`

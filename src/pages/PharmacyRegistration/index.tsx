@@ -170,11 +170,11 @@ function PharmacyRegistration() {
   return (
     <>
       <div>
-        <h1>Pharmacy Registration</h1>
+        <h2>Pharmacy Registration</h2>
           <form onSubmit={handleSubmit}>
             <PharmacyRegistrationDivContainerStyled>
               <PharmacyRegistrationDivStyled>
-              <h2>General information</h2>
+              <h3>General information</h3>
                 <InputField
                   label="Corporate Name*"
                   type="text"
@@ -231,7 +231,7 @@ function PharmacyRegistration() {
                 />
               </PharmacyRegistrationDivStyled>
               <PharmacyRegistrationDivStyled>
-              <h2>Adress</h2>
+              <h3>Adress</h3>
                 <InputField
                   label="Zip Code*"
                   type="text"

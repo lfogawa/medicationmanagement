@@ -109,9 +109,9 @@ function MedicineRegistration(){
   return (
     <>
       <div>
-        <h1>Medicine Registration</h1>
+        <h2>Medicine Registration</h2>
           <form onSubmit={handleSubmit}>
-            <h2>Medicine information</h2>
+            <h3>Medicine information</h3>
               <InputField
                 label="Medicine Name*"
                 type="text"

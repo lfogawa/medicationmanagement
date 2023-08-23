@@ -5,8 +5,8 @@ function LoginHeader() {
   return (
     <>
       <LoginHeaderStyled>
-        <img src={logo} alt="logo"/>
-        <p>Medication Management</p>
+        <img src={logo} alt="Logo of DEVinPharmacy."/>
+        <h1>Medication Management</h1>
       </LoginHeaderStyled>
     </>
   )

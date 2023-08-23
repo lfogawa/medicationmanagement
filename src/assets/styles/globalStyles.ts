@@ -10,7 +10,7 @@ export default createGlobalStyle<StylesProps>`
        font-family: 'Arial', 'Open Sans', sans-serif; 
    }
 
-   h1{
+   h2{
         color: #31955F;
         display: flex;
         justify-content: center;
@@ -18,7 +18,7 @@ export default createGlobalStyle<StylesProps>`
         margin: 1em;
    }
 
-   h2{
+   h3{
         color: #084420;
    }
 
