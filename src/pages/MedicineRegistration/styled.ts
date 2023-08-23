@@ -8,6 +8,7 @@ export const MedicineRegistrationAlertDivStyled = styled.div<StylesProps>`
   align-items: center;
   flex-direction: column;
   font-size: 15px;
+  font-weight: bold;
   color: #ff0000;
   height: 30px;
 `

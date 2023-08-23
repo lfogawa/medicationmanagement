@@ -22,14 +22,8 @@ export default createGlobalStyle<StylesProps>`
         color: #084420;
    }
 
-   form{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin: 1em;
-   }
-
    form > p{
+        text-align: center;
         font-size: 12px;
    }
 `

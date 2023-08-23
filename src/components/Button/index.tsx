@@ -1,5 +1,5 @@
 import { ButtonProps } from "./interface"
-import { ButtonStyled } from "./styled"
+import { ButtonStyled, ButtonStyledDiv } from "./styled"
 import { useState } from 'react';
 
 function Button({
@@ -17,7 +17,7 @@ function Button({
   };
 
   return (
-    <>
+    <ButtonStyledDiv>
       <ButtonStyled
         type={type}
         onMouseDown={handleMouseDown}
@@ -26,7 +26,7 @@ function Button({
       >
         {children}
       </ButtonStyled>
-    </>
+    </ButtonStyledDiv>
   );
 }
 

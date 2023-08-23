@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
-import { ButtonStyled } from "../../components/Button/styled";
 import { MedicineRegistrationAlertDivStyled } from "./styled";
+import { Button } from "../../components/Button";
 
 function MedicineRegistration(){
   const [form, setForm] = useState({
@@ -165,7 +165,7 @@ function MedicineRegistration(){
                 options={types}
               />
               <p>* fields must be filled.</p>
-            <ButtonStyled type='submit'>Register</ButtonStyled>
+            <Button type='submit'>Register</Button>
           </form>
         <MedicineRegistrationAlertDivStyled>
           {alert.general && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}

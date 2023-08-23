@@ -23,4 +23,5 @@ export interface StylesProps{
   transitionDuration?: string;
   transform?: string;
   menuOpen?: boolean;
+  success?: boolean;
 }
