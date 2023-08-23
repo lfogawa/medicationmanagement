@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
+import { ButtonStyled } from "../../components/Button/styled";
+import { MedicineRegistrationAlertDivStyled } from "./styled";
 
 function MedicineRegistration(){
   const [form, setForm] = useState({
@@ -81,6 +83,16 @@ function MedicineRegistration(){
           // Show success alert
           setAlert({ ...alert, success: true });
           setTimeout(() => setAlert({ ...alert, success: false }), 3500);
+
+          // Reset form
+          setForm({
+            medicineName: '',
+            labName: '',
+            dosage: '',
+            description: '',
+            unitPrice: '',
+            type: ''
+          })
         }
 
         return;
@@ -153,14 +165,14 @@ function MedicineRegistration(){
                 options={types}
               />
               <p>* fields must be filled.</p>
-            <button type='submit'>Register</button>
+            <ButtonStyled type='submit'>Register</ButtonStyled>
           </form>
-        <div>
+        <MedicineRegistrationAlertDivStyled>
           {alert.general && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
           {alert.success && <p style={{ color: 'green' }}>Registration successfull!</p>}
           {alert.failure && <p style={{ color: 'red' }}>Registration failure.</p>}
           {alert.medicineRegistered && <p style={{ color: 'red' }}>Medicine already registered.</p>}
-        </div>
+        </MedicineRegistrationAlertDivStyled>
       </div>
     </>
   )

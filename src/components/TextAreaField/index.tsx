@@ -1,3 +1,5 @@
+import { TextAreaFieldDivStyled } from "./styled";
+
 interface TextAreaFieldProps {
   label: string;
   name: string;
@@ -16,7 +18,7 @@ function TextAreaField({
   placeholder,
 }: TextAreaFieldProps) {
   return (
-    <div>
+    <TextAreaFieldDivStyled>
       <label htmlFor={id}>{label}</label>
       <textarea
         name={name}
@@ -25,7 +27,7 @@ function TextAreaField({
         value={value}
         onChange={(e) => onChange(e.target.value)}
       />
-    </div>
+    </TextAreaFieldDivStyled>
   );
 }
 

@@ -1,3 +1,5 @@
+import { SelectFieldDivStyled } from "./styled";
+
 interface SelectFieldProps {
   label: string;
   name: string;
@@ -16,7 +18,7 @@ function SelectField({
   options
 }: SelectFieldProps) {
   return (
-    <div>
+    <SelectFieldDivStyled>
       <label htmlFor={id}>{label}</label>
       <select name={name} id={id} value={value} onChange={(e) => onChange(e.target.value)} defaultValue="">
         <option value=""></option>
@@ -26,7 +28,7 @@ function SelectField({
           </option>
         ))}
       </select>
-    </div>
+    </SelectFieldDivStyled>
   );
 }
 

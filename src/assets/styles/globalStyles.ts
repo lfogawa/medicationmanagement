@@ -9,20 +9,23 @@ export default createGlobalStyle<StylesProps>`
        box-sizing: border-box;
        font-family: 'Arial', 'Open Sans', sans-serif; 
    }
-   #root{
-       margin:0 auto;
-   }
 
    h1{
-          color: #31955F;
-          display: flex;
-          justify-content: center;
-          font-size: 2em;
+        color: #31955F;
+        display: flex;
+        justify-content: center;
+        font-size: 2em;
+        margin: 1em;
    }
 
    form{
-          display: flex;
-          flex-direction: column;
-          align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 1em;
+   }
+
+   form > p{
+        font-size: 12px;
    }
 `
