@@ -12,6 +12,7 @@ export const SelectFieldDivStyled = styled.div<StylesProps>`
 
   label {
     margin: 10px;
+    color: #084420;
   }
 
   select {

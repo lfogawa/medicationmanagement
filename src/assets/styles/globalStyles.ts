@@ -18,6 +18,10 @@ export default createGlobalStyle<StylesProps>`
         margin: 1em;
    }
 
+   h2{
+        color: #084420;
+   }
+
    form{
         display: flex;
         flex-direction: column;

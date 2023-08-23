@@ -1,14 +1,22 @@
+import { useState } from "react";
 import logo from "../../assets/svg/logo.svg"
+import { HeaderStyled } from "./styled";
 
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  }
+
   const handleLogout = () => {
     localStorage.removeItem('user');
   }
 
   return (
     <>
-      <header>
-        <img src={logo} alt="logo" width={50}/>
+      <HeaderStyled menuOpen={menuOpen}>
+        <a href="/map"><img src={logo} alt="logo" width={50}/></a>
         <nav>
           <ul>
             <li><a href="/map">Map</a></li>
@@ -18,7 +26,14 @@ function Header() {
             <li><a href="/" onClick={handleLogout}>Logout</a></li>
           </ul>
         </nav>
-      </header>
+        <div className={`menu-toggle ${menuOpen ? 'open' : ''}`} onClick={toggleMenu}>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+          <div className="bar"></div>
+        </div>
+      </HeaderStyled>
     </>
   )
 }

@@ -12,8 +12,8 @@ export const InputFieldDivStyled = styled.div<StylesProps>`
 
   label {
     margin: 10px;
+    color: #084420;
   }
-
 
   input {
     text-align: center;

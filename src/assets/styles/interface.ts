@@ -22,4 +22,5 @@ export interface StylesProps{
   active?: boolean;
   transitionDuration?: string;
   transform?: string;
+  menuOpen?: boolean;
 }
