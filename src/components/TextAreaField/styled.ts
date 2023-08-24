@@ -18,8 +18,11 @@ export const TextAreaFieldDivStyled = styled.div<StylesProps>`
     text-align: left;
     padding: 6px;
     border-radius: 10px;
-    border-width: 1px;
+    border-color: transparent;
     width: 45vw;
     height: 10vh;
+    color: #084420;
+    box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
+    transition: 400ms;
   }
 `

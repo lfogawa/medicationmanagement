@@ -19,7 +19,10 @@ export const SelectFieldDivStyled = styled.div<StylesProps>`
     text-align: center;
     padding: 6px;
     border-radius: 10px;
-    border-width: 1px;
+    border-color: transparent;
     width: 45vw;
+    color: #084420;
+    box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
+    transition: 400ms;
   }
 `

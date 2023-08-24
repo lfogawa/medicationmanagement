@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
-import { MedicineRegistrationAlertDivStyled } from "./styled";
+import { MedicineRegistrationAlertDivStyled, MedicineRegistrationDivStyled } from "./styled";
 import { Button } from "../../components/Button";
 
 function MedicineRegistration(){
@@ -108,7 +108,7 @@ function MedicineRegistration(){
 
   return (
     <>
-      <div>
+      <MedicineRegistrationDivStyled>
         <h2>Medicine Registration</h2>
           <form onSubmit={handleSubmit}>
             <h3>Medicine information</h3>
@@ -173,7 +173,7 @@ function MedicineRegistration(){
           {alert.failure && <p style={{ color: 'red' }}>Registration failure.</p>}
           {alert.medicineRegistered && <p style={{ color: 'red' }}>Medicine already registered.</p>}
         </MedicineRegistrationAlertDivStyled>
-      </div>
+      </MedicineRegistrationDivStyled>
     </>
   )
 }
