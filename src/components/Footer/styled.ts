@@ -8,14 +8,14 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
   align-items: center;
   color: #ffffff;
   padding: 3em;
-  height: 45vh;
+  height: 25vh;
   background-color: #084420;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   font-size: 14px;
 
   @media (max-width: 600px){
-    height: 55vw
+    height: 45vw;
   }
 
   ul{
