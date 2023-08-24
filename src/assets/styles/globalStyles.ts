@@ -18,7 +18,7 @@ export default createGlobalStyle<StylesProps>`
         margin: 1em;
    }
 
-   h3, p{
+   h3{
         color: #084420;
    }
 
