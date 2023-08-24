@@ -9,5 +9,17 @@ export const CardDivContainerStyled = styled.div<StylesProps>`
 `
 
 export const MedicineListDivStyled = styled.div<StylesProps>`
+  margin: 2em;
   height: 48vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  p{
+    color: #31955F;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+  }
 `
