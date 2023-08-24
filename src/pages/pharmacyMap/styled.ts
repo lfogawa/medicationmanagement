@@ -8,4 +8,12 @@ export const PharmacyMapDivStyled = styled.div<StylesProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  p{
+    color: #31955F;
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+  }
 `

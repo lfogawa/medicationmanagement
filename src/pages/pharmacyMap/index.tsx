@@ -26,7 +26,7 @@ function PharmacyMap() {
         )
       :
       <PharmacyMapDivStyled>
-        <h2>Sorry, there's no pharmacy registered.</h2>
+        <p>Sorry, there's no pharmacy registered.</p>
       </PharmacyMapDivStyled>
       }     
     </>
