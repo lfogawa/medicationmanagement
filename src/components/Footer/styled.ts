@@ -8,11 +8,15 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
   align-items: center;
   color: #ffffff;
   padding: 3em;
-  height: 15vw;
+  height: 45vh;
   background-color: #084420;
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   font-size: 14px;
+
+  @media (max-width: 600px){
+    height: 55vw
+  }
 
   ul{
     font-weight: bold;
@@ -20,6 +24,7 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
 
   li{
     padding: 1em;
+    list-style: none;
   }
 
   li > a{
