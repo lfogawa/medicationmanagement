@@ -1,8 +1,19 @@
+import { Button } from "../Button"
+import { InputField } from "../InputField"
+import { SearchFieldDivStyled } from "./styled"
+
 function SearchField() {
   return (
-    <>
-      <input type="text" />
-    </>
+    <SearchFieldDivStyled>
+      <form>
+        <input
+          
+        />
+        <Button type="submit">
+          Search
+        </Button>
+      </form>
+    </SearchFieldDivStyled>
   )
 }
 

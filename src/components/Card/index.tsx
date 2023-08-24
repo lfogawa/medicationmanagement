@@ -1,4 +1,5 @@
 import { CardProps } from "./interface"
+import { CardDivStyled } from "./styled"
 
 function Card({
   medicineName,
@@ -11,14 +12,14 @@ function Card({
 
   return(
     <>
-      <div>
-        <p>{medicineName}</p>
+      <CardDivStyled>
+        <h3>{medicineName}</h3>
         <p>{labName}</p>
         <p>{dosage}</p>
         <p>{description}</p>
         <p>{unitPrice}</p>
         <p>{type}</p>
-      </div>
+      </CardDivStyled>
     </>
   )
 }

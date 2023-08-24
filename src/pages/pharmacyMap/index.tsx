@@ -25,7 +25,7 @@ function PharmacyMap() {
           )
         )
       :
-      <p>Sorry, there's no pharmacy data registered.</p>
+      <p>Sorry, there's no pharmacy registered.</p>
       }
     </PageMap>
   )

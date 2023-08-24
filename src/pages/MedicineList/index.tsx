@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import { SearchField } from '../../components/SearchField'
 import { Card } from '../../components/Card'  // Certifique-se de importar o componente Card corretamente
+import { CardDivContainerStyled, EmptyDivStyled } from "./styled";
 
 function MedicineList() {
   const existingMedicine = JSON.parse(localStorage.getItem('itemMedicineData') || '[]');
@@ -13,17 +14,27 @@ function MedicineList() {
   return (
     <>
       <SearchField />
-      {medicineList.map((medicine: any, index: number) => (
-        <Card
-          key={index}
-          medicineName={medicine.medicineName}
-          labName={medicine.labName}
-          dosage={medicine.dosage}
-          description={medicine.description}
-          unitPrice={medicine.unitPrice}
-          type={medicine.type}
-        />
-      ))}
+        <CardDivContainerStyled>
+        {
+          medicineList.length > 0 ?
+          medicineList.map((medicine: any, index: number) => (
+            <Card
+              key={index}
+              medicineName={medicine.medicineName}
+              labName={medicine.labName}
+              dosage={medicine.dosage}
+              description={medicine.description}
+              unitPrice={medicine.unitPrice}
+              type={medicine.type}
+            />
+           )
+          )
+          :
+          <p>Sorry, there's no medicine registered.</p>
+        }
+      </CardDivContainerStyled>
+      <EmptyDivStyled>
+      </EmptyDivStyled>
     </>
   )
 }
