@@ -8,6 +8,6 @@ export const CardDivContainerStyled = styled.div<StylesProps>`
   justify-content: space-evenly;
 `
 
-export const EmptyDivStyled = styled.div<StylesProps>`
+export const MedicineListDivStyled = styled.div<StylesProps>`
   height: 48vh;
 `

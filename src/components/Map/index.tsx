@@ -50,14 +50,14 @@ function Map({ pharmacies }: MapProps) {
                     <p><a href={`https://wa.me/55${pharmacy.companyCellphone}`}>{pharmacy.companyCellphone}</a></p>
                   </>
                 )}
+              </PopupDivStyled>
+              <PopupDivStyled>
                 {pharmacy.zipCode && (
                   <>
                     <h3>Zip Code:</h3>
                     <p>{pharmacy.zipCode}</p>
                   </>
                 )}
-              </PopupDivStyled>
-              <PopupDivStyled>
                 {pharmacy.street && (
                   <>
                     <h3>Street:</h3>

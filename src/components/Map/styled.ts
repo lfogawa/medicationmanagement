@@ -15,6 +15,7 @@ export const MarkerStyled = styled(Marker)``
 export const PopupStyled = styled(Popup)``
 
 export const PopupDivContainerStyled = styled.div<StylesProps>`
+  display: flex;
   font-size: 12px;
 
   @media (max-width: 800px){
@@ -30,6 +31,7 @@ export const PopupDivStyled = styled.div<StylesProps>`
 
   p{
     margin: 0;
+    margin-top: 5px;
     margin-bottom: 10px;
     padding: 0;
   }

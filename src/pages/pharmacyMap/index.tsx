@@ -1,5 +1,5 @@
 import {useState, useEffect} from "react"
-import { PageMap } from "./styled";
+import { PharmacyMapDivStyled } from "./styled";
 import { Map } from "../../components/Map"
 import { MapProps } from "../../components/Map/interface";
 
@@ -15,7 +15,7 @@ function PharmacyMap() {
     }, []);
   
   return (
-    <PageMap>
+    <>
       {
         pharmacies.length > 0 ?
         pharmacies.map((pharmacy: MapProps, index: number) => (
@@ -25,9 +25,11 @@ function PharmacyMap() {
           )
         )
       :
-      <p>Sorry, there's no pharmacy registered.</p>
-      }
-    </PageMap>
+      <PharmacyMapDivStyled>
+        <h2>Sorry, there's no pharmacy registered.</h2>
+      </PharmacyMapDivStyled>
+      }     
+    </>
   )
 }
 

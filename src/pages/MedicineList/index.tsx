@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { SearchField } from '../../components/SearchField'
 import { Card } from '../../components/Card'  // Certifique-se de importar o componente Card corretamente
-import { CardDivContainerStyled, EmptyDivStyled } from "./styled";
+import { CardDivContainerStyled, MedicineListDivStyled } from "./styled";
 
 function MedicineList() {
   const existingMedicine = JSON.parse(localStorage.getItem('itemMedicineData') || '[]');
@@ -30,11 +30,11 @@ function MedicineList() {
            )
           )
           :
-          <p>Sorry, there's no medicine registered.</p>
+          <MedicineListDivStyled>
+            <p>Sorry, there's no medicine registered.</p>
+          </MedicineListDivStyled>
         }
       </CardDivContainerStyled>
-      <EmptyDivStyled>
-      </EmptyDivStyled>
     </>
   )
 }

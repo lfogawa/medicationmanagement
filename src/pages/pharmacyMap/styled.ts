@@ -1,18 +1,11 @@
 import styled from "styled-components"
-export const PageMap = styled.main`
+import { StylesProps } from "../../assets/styles/interface"
+
+
+export const PharmacyMapDivStyled = styled.div<StylesProps>`
+  margin: 2em;
+  height: 48vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  div {
-    display: flex;
-    align-items: center;
-    }
-  
-  p {
-    display: flex;
-    align-items: center;
-    padding: 8px;
-  }
+  align-items: center;
 `
