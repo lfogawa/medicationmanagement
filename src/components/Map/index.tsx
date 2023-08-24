@@ -1,10 +1,10 @@
 import { TileLayer } from 'react-leaflet';
 import { MapProps } from './interface';
-import { MapContainerStyled, MarkerStyled, PopupStyled } from "./styled";
+import { MapContainerStyled, MarkerStyled, PopupDivContainerStyled, PopupDivStyled, PopupStyled } from "./styled";
 
 function Map({ pharmacies }: MapProps) {
   return (
-    <MapContainerStyled center={[-27.586785, -48.524593]} zoom={13}>
+    <MapContainerStyled center={[-15.720882, -50.412599]} zoom={4}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {pharmacies.map((pharmacy: any, index: number) => (
         <MarkerStyled
@@ -12,23 +12,102 @@ function Map({ pharmacies }: MapProps) {
           key={index}
         >
           <PopupStyled>
-            <p>Corporate Name: {pharmacy.corporateName}
-              Trade Name: {pharmacy.tradeName}
-              CNPJ: {pharmacy.tradeName}
-              E-mail: {pharmacy.companyEmail}
-              Phone: {pharmacy.companyPhone}
-              Cellphone: <a href={`https://wa.me/55${pharmacy.companyCellphone}`}>{pharmacy.companyCellphone}</a>
-              Zip Code: {pharmacy.zipCode}
-              Street: {pharmacy.street},
-              Number: {pharmacy.number},
-              Neighborhood: {pharmacy.neighborhood},
-              City: {pharmacy.city},
-              State: {pharmacy.state},
-              Complement: {pharmacy.complement},
-              GeolocationLatitude: {pharmacy.geolocationLatitude},
-              GeolocationLongitude: {pharmacy.geolocationLongitude}
-              {pharmacy.street} {pharmacy.number}, {pharmacy.city}
-            </p>
+            <PopupDivContainerStyled>
+              <PopupDivStyled>
+                {pharmacy.corporateName && (
+                  <>
+                    <h3>Corporate Name:</h3>
+                    <p>{pharmacy.corporateName}</p>
+                  </>
+                )}
+                {pharmacy.tradeName && (
+                  <>
+                    <h3>Trade Name:</h3>
+                    <p>{pharmacy.tradeName}</p>
+                  </>
+                )}
+                {pharmacy.cnpj && (
+                  <>
+                    <h3>Corporate Taxpayers Registry:</h3>
+                    <p>{pharmacy.cnpj}</p>
+                  </>
+                )}
+                {pharmacy.companyEmail && (
+                  <>
+                    <h3>E-mail:</h3>
+                    <p>{pharmacy.companyEmail}</p>
+                  </>
+                )}
+                {pharmacy.companyPhone && (
+                  <>
+                    <h3>Phone:</h3>
+                    <p>{pharmacy.companyPhone}</p>
+                  </>
+                )}
+                {pharmacy.companyCellphone && (
+                  <>
+                    <h3>Cellphone:</h3>
+                    <p><a href={`https://wa.me/55${pharmacy.companyCellphone}`}>{pharmacy.companyCellphone}</a></p>
+                  </>
+                )}
+                {pharmacy.zipCode && (
+                  <>
+                    <h3>Zip Code:</h3>
+                    <p>{pharmacy.zipCode}</p>
+                  </>
+                )}
+              </PopupDivStyled>
+              <PopupDivStyled>
+                {pharmacy.street && (
+                  <>
+                    <h3>Street:</h3>
+                    <p>{pharmacy.street}</p>
+                  </>
+                )}
+                {pharmacy.number && (
+                  <>
+                    <h3>Number:</h3>
+                    <p>{pharmacy.number}</p>
+                  </>
+                )}
+                {pharmacy.neighborhood && (
+                  <>
+                    <h3>Neighborhood:</h3>
+                    <p>{pharmacy.neighborhood}</p>
+                  </>
+                )}
+                {pharmacy.city && (
+                  <>
+                    <h3>City:</h3>
+                    <p>{pharmacy.city}</p>
+                  </>
+                )}
+                {pharmacy.state && (
+                  <>
+                    <h3>State:</h3>
+                    <p>{pharmacy.state}</p>
+                  </>
+                )}
+                {pharmacy.complement && (
+                  <>
+                    <h3>Complement:</h3>
+                    <p>{pharmacy.complement}</p>
+                  </>
+                )}
+                {pharmacy.geolocationLatitude && (
+                  <>
+                    <h3>GeolocationLatitude:</h3>
+                    <p>{pharmacy.geolocationLatitude}</p>
+                  </>
+                )}
+                {pharmacy.geolocationLongitude && (
+                  <>
+                    <h3>GeolocationLongitude:</h3>
+                    <p>{pharmacy.geolocationLongitude}</p>
+                  </>
+                )}
+              </PopupDivStyled>
+            </PopupDivContainerStyled>
           </PopupStyled>
         </MarkerStyled>
       ))}

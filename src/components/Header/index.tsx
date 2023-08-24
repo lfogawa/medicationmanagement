@@ -17,13 +17,13 @@ function Header() {
   return (
     <>
       <HeaderStyled menuOpen={menuOpen}>
-        <a href="/map"><img src={logo} alt="logo" width={50}/></a>
+        <a href="/pharmacyMap"><img src={logo} alt="logo" width={50}/></a>
         <nav>
           <ul>
-            <li><Link to="/pharmacymap">Pharmacy Map</Link></li>
-            <li><Link to="/pharmacyregistration">Pharmacy Registration</Link></li>
-            <li><Link to="/medicinelist">Medicine List</Link></li>
-            <li><Link to="/medicineregistration">Medicine Registration</Link></li>
+            <li><Link to="/pharmacyMap">Pharmacy Map</Link></li>
+            <li><Link to="/pharmacyRegistration">Pharmacy Registration</Link></li>
+            <li><Link to="/medicineList">Medicine List</Link></li>
+            <li><Link to="/medicineRegistration">Medicine Registration</Link></li>
             <li><a href="/" onClick={handleLogout}>Logout</a></li>
           </ul>
         </nav>
