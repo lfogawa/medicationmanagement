@@ -1,7 +1,6 @@
 import { styled } from "styled-components"
 import { StylesProps } from "../../assets/styles/interface"
 
-
 export const FooterDivContainerStyled = styled.div<StylesProps>`
   display: flex;
   justify-content: space-evenly;
@@ -13,10 +12,6 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
   border-top-left-radius: 30px;
   border-top-right-radius: 30px;
   font-size: 14px;
-
-  @media (max-width: 600px){
-    height: 45vw;
-  }
 
   ul{
     font-weight: bold;
@@ -35,5 +30,25 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
   li > a:hover{
     text-decoration: underline;
     color: #ffffff;
+  }
+
+  img{
+    width: 85px;
+  }
+
+  @media (max-width: 700px){
+    img{
+      width: 70px;
+      margin-right: 10px;
+    }
+  }
+
+  @media (max-width: 600px){
+    height: 45vw;
+
+    img{
+      width: 50px;
+      margin-right: 20px;
+    }
   }
 `
