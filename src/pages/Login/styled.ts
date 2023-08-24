@@ -3,7 +3,12 @@ import { StylesProps } from "../../assets/styles/interface"
 
 export const LoginContainerStyled = styled.div<StylesProps>`
   display: flex;
-  height: 100vh;
+  margin-top: 150px;
+  margin-bottom: 40px;
+
+  @media (min-width: 880px) {
+    margin-bottom: 150px;
+  }
 `
 export const LoginDivStyled = styled.div<StylesProps>`
   margin: auto;

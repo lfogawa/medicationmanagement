@@ -2,12 +2,13 @@ import { StylesProps } from "../../assets/styles/interface";
 import { styled } from "styled-components";
 
 export const SocialMediaDivStyled = styled.div<StylesProps>`
-  position: fixed;
   display: flex;
   justify-content: space-evenly;
-  flex-direction: flex-end;
+  align-items: center;
   bottom: 0;
   width: 100%;
+  background-color: #ffffff;
+  margin-top: auto;
   
   a{
     padding: 1em;

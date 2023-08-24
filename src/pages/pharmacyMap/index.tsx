@@ -3,7 +3,7 @@ import { PageMap } from "./styled";
 import { Map } from "../../components/Map"
 import { MapProps } from "../../components/Map/interface";
 
-function PharmacyList() {
+function PharmacyMap() {
   const [ pharmacies, setPharmacies ] = useState<MapProps[]>([])
 
   useEffect(() => {
@@ -31,4 +31,4 @@ function PharmacyList() {
   )
 }
 
-export { PharmacyList };
+export { PharmacyMap };

@@ -21,5 +21,4 @@ export const LoginHeaderStyled = styled.header<StylesProps>`
     font-weight: bold;
     color: #31955F;
   }
-
 `
