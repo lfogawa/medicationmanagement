@@ -231,7 +231,7 @@ function PharmacyRegistration() {
                 />
               </PharmacyRegistrationDivStyled>
               <PharmacyRegistrationDivStyled>
-              <h3>Adress</h3>
+              <h3>Address</h3>
                 <InputField
                   label="Zip Code*"
                   type="text"
