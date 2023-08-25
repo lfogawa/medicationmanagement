@@ -1,6 +1,6 @@
 import { useState } from "react";
 import logo from "../../assets/svg/logo.svg"
-import { HeaderStyled } from "./styled";
+import { HeaderDivStyled, HeaderStyled } from "./styled";
 import { Link } from "react-router-dom";
 
 function Header() {
@@ -17,8 +17,8 @@ function Header() {
   return (
     <>
       <HeaderStyled menuOpen={menuOpen}>
-        <a href="/pharmacyMap"><img src={logo} alt="logo" width={50}/></a>
-        <nav>
+        <a href="/pharmacyMap"><img src={logo} alt="Logo." /></a>
+        <nav>          
           <ul>
             <li><Link to="/pharmacyMap">Pharmacy Map</Link></li>
             <li><Link to="/pharmacyRegistration">Pharmacy Registration</Link></li>
@@ -32,9 +32,9 @@ function Header() {
           <div className="bar"></div>
           <div className="bar"></div>
           <div className="bar"></div>
-          <div className="bar"></div>
         </div>
       </HeaderStyled>
+      <HeaderDivStyled />
     </>
   )
 }

@@ -1,55 +1,108 @@
 import { styled } from "styled-components";
 import { StylesProps } from "../../assets/styles/interface";
 
+export const HeaderDivStyled = styled.div<StylesProps>`
+  @media (max-width: 880px) {
+    height: 84px;
+  }
+
+  @media (min-width: 881px) {
+    height: 125px;
+  }
+`
+
 export const HeaderStyled = styled.header<StylesProps>`
   @media (max-width: 880px) {
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    box-shadow: 0 5px 5px 0px rgba(0,0,0,0.3);
+    z-index: 2;
+
     .menu-toggle {
       display: flex;
       cursor: pointer;
       flex-direction: column;
+      justify-content: center;      
     }
 
     .bar {
-      width: 25px;
+      margin: 3px;
+      width: 50px;
       height: 3px;
-      background-color: #084420;
-      margin: 3px 0;
+      border-radius: 5px;
+      background-color: #31955F;      
+      transition-duration: 400ms;
     }
 
-    nav ul {
+    .bar {
+      margin: ${props => (props.menuOpen ? "6px" : "none")}; 
+      transition-duration: 400ms;
+    }
+
+    ul {
       display: ${props => (props.menuOpen ? "flex" : "none")};
-      position: absolute;
-      top: 60px;
       left: 0;
       flex-direction: column;
       background-color: #FFFFFF;
-      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
       width: 100%;
-      z-index: 1; /* Garante que o menu fique sobreposto aos outros elementos */
+      list-style: none;
+      z-index: 2;
     }
 
-    nav li {
-      /* Estilos para cada item do menu no modo condensado */
+    li {
       margin: 0;
       text-align: center;
-      padding: 10px 0;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 16px;
+      transition-duration: 400ms;
+    }
+
+    li:hover{
+      text-decoration: underline;
+      transition-duration: 400ms;
+      color: #31955F;
+    }
+
+    li > a{
+      text-decoration: none;
+      color: #31955F;
+    }
+
+    img{
+      justify-content: center;
+      align-items: flex-start;
+      width: 70px;
+      transition-duration: 400ms;
+    }
+
+    img:hover{
+      transform: scale(1.1);
+      transition-duration: 400ms;     
     }
   }
   
   @media (min-width: 881px) {
+    position: fixed;
+    width: 100%;
     padding: 2em;
     display: flex;
     justify-content: center;
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
-    border-bottom-style: solid;
     border-color: transparent; 
     box-shadow: 0 5px 15px 0px rgba(0,0,0,0.3);
+    background-color: #FFFFFF;
+    z-index: 2;
     
     .menu-toggle {
       display: none;
-      cursor: pointer;
-      flex-direction: column;
     }
 
     img{

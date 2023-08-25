@@ -16,11 +16,11 @@ export const SocialMediaDivStyled = styled.div<StylesProps>`
 
   img{
     width: 2.5em;
-    transition-duration: 350ms;
+    transition-duration: 400ms;
   }
 
   img:hover{
     transform: scale(1.1);
-    transition-duration: 350ms;
+    transition-duration: 400ms;
   }
 `

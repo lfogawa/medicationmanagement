@@ -5,6 +5,7 @@ import { StylesProps } from '../../assets/styles/interface';
 export const MapContainerStyled = styled(MapContainer)<StylesProps>`
   height: 80vh;
   width: 100%;
+  z-index: 1;
 
   @media (max-width: 800px){
     height: 70vh;
