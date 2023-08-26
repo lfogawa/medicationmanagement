@@ -8,7 +8,7 @@ export const ButtonStyledDiv = styled.div<StylesProps>`
 export const ButtonStyled = styled.button<StylesProps>`
   margin: 1em;
   padding: 10px;
-  width: 150px; /* Ajustar para 250px desktop */
+  width: 150px;
   border-radius: 15px;
   border-color: transparent;
   box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
@@ -18,7 +18,10 @@ export const ButtonStyled = styled.button<StylesProps>`
   font-weight: bold;
   color: #FFFFFF;
 
-  &:hover:enabled {
+  @media (min-width: 769px){
+    width: 250px;
+
+    &:hover:enabled {
     transform: scale(1.02) translate(1px, 1px); 
     box-shadow: 8px 8px 6px 2px rgba(0,0,0,0.3);
     transition-duration: 300ms;
@@ -33,5 +36,6 @@ export const ButtonStyled = styled.button<StylesProps>`
     background-color: #084420; 
     transition-duration: 150ms;
   `}
+  }
   }
 `
