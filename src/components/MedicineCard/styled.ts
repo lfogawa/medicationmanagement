@@ -4,6 +4,7 @@ import { StylesProps } from "../../assets/styles/interface";
 export const MedicineCardButtonStyled = styled.button<StylesProps>`
   margin: 1em;
   padding: 15px;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;

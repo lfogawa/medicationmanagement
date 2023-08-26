@@ -11,8 +11,6 @@ function MedicineList() {
     setMedicineList(existingMedicine);
   }, []);
 
-
-
   return (
     <>
       <SearchField />

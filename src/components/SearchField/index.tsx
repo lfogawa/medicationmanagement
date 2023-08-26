@@ -7,7 +7,7 @@ function SearchField() {
     <SearchFieldDivStyled>
       <form>
         <input
-          
+          placeholder="Type your search"
         />
         <Button type="submit">
           Search

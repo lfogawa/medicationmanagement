@@ -9,6 +9,7 @@ export const ButtonStyled = styled.button<StylesProps>`
   margin: 1em;
   padding: 10px;
   width: 150px;
+  cursor: pointer;
   border-radius: 15px;
   border-color: transparent;
   box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
