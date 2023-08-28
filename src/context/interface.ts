@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { LoginProps } from "../pages/login/interface";
+import { LoginProps } from "../pages/login/interface.ts";
 
 export interface ReactProps {
   children: ReactNode;

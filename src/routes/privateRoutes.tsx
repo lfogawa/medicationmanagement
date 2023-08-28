@@ -1,8 +1,8 @@
 import { Route, Routes, Navigate } from "react-router-dom";
-import { PharmacyMap } from "../pages/pharmacyMap";
-import { PharmacyRegistration } from "../pages/pharmacyRegistration";
-import { MedicineRegistration } from "../pages/medicineRegistration";
-import { MedicineList } from "../pages/medicineList";
+import { PharmacyMap } from "../pages/pharmacyMap/index";
+import { PharmacyRegistration } from "../pages/pharmacyRegistration/index";
+import { MedicineRegistration } from "../pages/medicineRegistration/index";
+import { MedicineList } from "../pages/medicineList/index";
 import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
 

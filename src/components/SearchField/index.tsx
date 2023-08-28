@@ -1,5 +1,4 @@
 import { Button } from "../Button"
-import { InputField } from "../InputField"
 import { SearchFieldDivStyled } from "./styled"
 
 function SearchField() {
