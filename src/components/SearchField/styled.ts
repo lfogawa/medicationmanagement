@@ -16,12 +16,13 @@ export const SearchFieldDivStyled = styled.div<StylesProps>`
   input {
     margin-right: 2em;
     text-align: center;
-    padding: 6px;
+    padding: 10px;
     border-radius: 10px;
     border-color: transparent;
+    font-size: 1em;
     width: 45vw;
     color: #084420;
-    box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
+    box-shadow: 4px 4px 8px 4px rgba(0,0,0,0.3);
     transition: 400ms;
 
     
