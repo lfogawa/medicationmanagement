@@ -60,7 +60,7 @@ function Login() {
         passwordAlert: 'Password must have at least 8 characters, including letters and numbers.',
       }));
     } else {
-      navigate('/map');
+      navigate('/pharmacyMap');
 
       localStorage.setItem('user', JSON.stringify(form));
     }
