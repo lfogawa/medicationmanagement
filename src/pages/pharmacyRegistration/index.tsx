@@ -302,7 +302,7 @@ function PharmacyRegistration() {
                   name="geolocationLatitude"
                   id="geolocationLatitude"
                   value={form.geolocationLatitude}
-                  onChange={(value) => setForm({...form, geolocationLatitude: value})}
+                  onChange={(value) => setForm({...form, geolocationLatitude: value.replace(/,/g, '.')})}
                   placeholder="Type the Geolocation Latitude"
                 />
                 <InputField
@@ -311,7 +311,7 @@ function PharmacyRegistration() {
                   name="geolocationLongitude"
                   id="geolocationLongitude"
                   value={form.geolocationLongitude}
-                  onChange={(value) => setForm({...form, geolocationLongitude: value})}
+                  onChange={(value) => setForm({...form, geolocationLongitude: value.replace(/,/g, '.')})}
                   placeholder="Type the Geolocation Longitude"
                 />
               </PharmacyRegistrationDivStyled>  

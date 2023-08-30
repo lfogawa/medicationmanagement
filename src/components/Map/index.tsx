@@ -13,9 +13,17 @@ function Map({ pharmacies }: MapProps) {
   return (
     <MapContainerStyled center={[-15.720882, -50.412599]} zoom={4}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      {pharmacies.map((pharmacy: any, index: number) => (
+      {pharmacies.map((pharmacy: any, index: number) => {
+        const latitude = parseFloat(pharmacy.geolocationLatitude);
+        const longitude = parseFloat(pharmacy.geolocationLongitude);
+
+        if (isNaN(latitude) || isNaN(longitude)) {
+          return null;
+        }
+
+        return (
         <Marker
-          position={[pharmacy.geolocationLatitude, pharmacy.geolocationLongitude]}
+          position={[latitude, longitude]}
           key={index}
           icon={customIcon}
         >
@@ -102,23 +110,23 @@ function Map({ pharmacies }: MapProps) {
                     <p>{pharmacy.complement}</p>
                   </>
                 )}
-                {pharmacy.geolocationLatitude && (
+                {latitude && (
                   <>
                     <h3>GeolocationLatitude:</h3>
-                    <p>{pharmacy.geolocationLatitude}</p>
+                    <p>{latitude}</p>
                   </>
                 )}
-                {pharmacy.geolocationLongitude && (
+                {longitude && (
                   <>
                     <h3>GeolocationLongitude:</h3>
-                    <p>{pharmacy.geolocationLongitude}</p>
+                    <p>{longitude}</p>
                   </>
                 )}
               </PopupDivStyled>
             </PopupDivContainerStyled>
           </Popup>
         </Marker>
-      ))}
+      )})}
     </MapContainerStyled>
   );
 }
