@@ -135,5 +135,14 @@ export const HeaderStyled = styled.header<StylesProps>`
       text-decoration: none;
       color: #31955F;
     }
+
+    img{
+      transition-duration: 400ms;
+    }
+
+    img:hover{
+      transform: scale(1.1);
+      transition-duration: 400ms;     
+    }
   }
 `;
