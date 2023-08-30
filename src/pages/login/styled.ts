@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import { StylesProps } from "../../assets/styles/interface"
 
-export const LoginContainerStyled = styled.div<StylesProps>`
+export const LoginDivContainerStyled = styled.div<StylesProps>`
   display: flex;
   margin-top: 150px;
   margin-bottom: 40px;
@@ -29,4 +29,22 @@ export const LoginAlertDivStyled = styled.div<StylesProps>`
   justify-content: center;
   font-size: 15px;
   height: 10px;
+`
+
+export const LinkToUserRegistrationDivStyled = styled.div<StylesProps>`
+  display: flex;
+  justify-content: center;
+  height: 10px;
+
+  a{
+    text-decoration: none;
+    color: #31955F;
+    font-size: 15px;
+  }
+
+  a:hover{
+    text-decoration: underline;
+    color: #31955F;
+    font-size: 15px;
+  }
 `

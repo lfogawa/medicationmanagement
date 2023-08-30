@@ -1,9 +1,7 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
-import { LoginHeader } from '../../components/LoginHeader';
-import { LoginAlertDivStyled, LoginContainerStyled, LoginDivStyled } from './styled';
-import { LoginFooter } from '../../components/LoginFooter';
+import { LoginAlertDivStyled, LoginDivContainerStyled, LoginDivStyled, LinkToUserRegistrationDivStyled } from './styled';
 import { Button } from '../../components/Button';
 
 function Login() {
@@ -71,8 +69,7 @@ function Login() {
 
   return (
     <>
-      <LoginHeader />
-      <LoginContainerStyled>
+      <LoginDivContainerStyled>
         <LoginDivStyled>
           <h2>Login</h2>
           <form onSubmit={handleSubmit}>
@@ -103,9 +100,11 @@ function Login() {
             <p>{alerts.passwordAlert}</p>
             <p>{alerts.emailPasswordAlert}</p>
           </LoginAlertDivStyled>
+          <LinkToUserRegistrationDivStyled>
+            <Link to="/userRegistration" >Don't have an account? Click here.</Link>
+          </LinkToUserRegistrationDivStyled>
         </LoginDivStyled>
-      </LoginContainerStyled>
-      <LoginFooter />  
+      </LoginDivContainerStyled>
     </>
   );
 }
