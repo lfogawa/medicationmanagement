@@ -28,7 +28,7 @@ function MedicineCard({
       onClick={() => setOpenModal(!openModal)}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
-      active={btnClick}
+      className={btnClick ? 'active' : ''}
     >
       <img src="src\assets\img\medicine.jpg" alt="Medicine image." />
       <h3>{medicineName}</h3>

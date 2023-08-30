@@ -1,4 +1,4 @@
-import { MapContainer, Marker, Popup } from 'react-leaflet';
+import { MapContainer } from 'react-leaflet';
 import styled from "styled-components";
 import { StylesProps } from '../../assets/styles/interface';
 
@@ -11,9 +11,6 @@ export const MapContainerStyled = styled(MapContainer)<StylesProps>`
     height: 70vh;
   }
 `
-export const MarkerStyled = styled(Marker)``
-
-export const PopupStyled = styled(Popup)``
 
 export const PopupDivContainerStyled = styled.div<StylesProps>`
   display: flex;

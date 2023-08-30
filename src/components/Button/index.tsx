@@ -22,7 +22,7 @@ function Button({
         type={type}
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
-        active={btnClick}
+        className={btnClick ? 'active' : ''}
       >
         {children}
       </ButtonStyled>

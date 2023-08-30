@@ -22,7 +22,7 @@ export const ButtonStyled = styled.button<StylesProps>`
   @media (min-width: 769px){
     width: 250px;
 
-    &:hover:enabled {
+    &:hover {
     transform: scale(1.02) translate(1px, 1px); 
     box-shadow: 8px 8px 6px 2px rgba(0,0,0,0.3);
     transition-duration: 300ms;
@@ -30,13 +30,13 @@ export const ButtonStyled = styled.button<StylesProps>`
     color: #FFFFFF;
   
 
-  ${props => props.active && css`
+    &.active {
     transform: scale(0.95) translate(0px, 0px);
     box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
     color: #FFFFFF;
     background-color: #084420; 
     transition-duration: 150ms;
-  `}
+    }
   }
   }
 `

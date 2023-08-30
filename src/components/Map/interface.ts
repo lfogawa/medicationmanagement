@@ -18,4 +18,6 @@ export interface MapProps {
   complement?: string,
   geolocationLatitude?: number,
   geolocationLongitude?: number,
+  iconUrl?: string,
+  iconSize?: string,
 }

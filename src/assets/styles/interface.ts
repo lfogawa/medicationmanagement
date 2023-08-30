@@ -19,7 +19,6 @@ export interface StylesProps{
   boxShadow?: string;
   bottom?: string;
   filter?: string;
-  active?: boolean;
   transitionDuration?: string;
   transform?: string;
   menuOpen?: boolean;

@@ -54,13 +54,13 @@ export const MedicineCardButtonStyled = styled.button<StylesProps>`
     color: #FFFFFF;
   
 
-  ${props => props.active && css`
+    &.active{
     transform: scale(0.95) translate(0px, 0px);
     box-shadow: 4px 4px 4px 2px rgba(0,0,0,0.3);
     color: #FFFFFF;
     background-color: #084420; 
     transition-duration: 150ms;
-  `}
+    }
   }
   }
 `

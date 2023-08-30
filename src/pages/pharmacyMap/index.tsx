@@ -19,16 +19,14 @@ function PharmacyMap() {
       {
         pharmacies.length > 0 ?
         pharmacies.map((pharmacy: MapProps, index: number) => (
-          <>
             <Map key={index} pharmacies={pharmacy} />
-          </>
           )
         )
       :
       <PharmacyMapDivStyled>
         <p>Sorry, there's no pharmacy registered.</p>
       </PharmacyMapDivStyled>
-      }     
+      }
     </>
   )
 }

@@ -1,17 +1,25 @@
-import { TileLayer } from 'react-leaflet';
+import { TileLayer, Marker, Popup } from 'react-leaflet';
 import { MapProps } from './interface';
-import { MapContainerStyled, MarkerStyled, PopupDivContainerStyled, PopupDivStyled, PopupStyled } from "./styled";
+import { MapContainerStyled, PopupDivContainerStyled, PopupDivStyled } from "./styled";
+import markerIcon from "../../assets/svg/markerIcon.svg"
+import { Icon } from 'leaflet';
 
 function Map({ pharmacies }: MapProps) {
+  const customIcon = new Icon({
+    iconUrl: markerIcon,
+    iconSize: [45, 45]
+  });
+
   return (
     <MapContainerStyled center={[-15.720882, -50.412599]} zoom={4}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {pharmacies.map((pharmacy: any, index: number) => (
-        <MarkerStyled
+        <Marker
           position={[pharmacy.geolocationLatitude, pharmacy.geolocationLongitude]}
           key={index}
+          icon={customIcon}
         >
-          <PopupStyled>
+          <Popup>
             <PopupDivContainerStyled>
               <PopupDivStyled>
                 {pharmacy.corporateName && (
@@ -108,8 +116,8 @@ function Map({ pharmacies }: MapProps) {
                 )}
               </PopupDivStyled>
             </PopupDivContainerStyled>
-          </PopupStyled>
-        </MarkerStyled>
+          </Popup>
+        </Marker>
       ))}
     </MapContainerStyled>
   );
