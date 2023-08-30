@@ -13,6 +13,7 @@ export const LoginDivContainerStyled = styled.div<StylesProps>`
 export const LoginDivStyled = styled.div<StylesProps>`
   margin: auto;
   padding: 2em;
+  padding-bottom: 3em;
   width: 70%;
   border-radius: 15px;
   box-shadow: 12px 12px 20px 5px rgba(0,0,0,0.3);
@@ -21,20 +22,25 @@ export const LoginDivStyled = styled.div<StylesProps>`
   flex-direction: column;
   justify-content: space-around;
 
+  @media (max-width: 879px) {
+    height: 68vh;
+  }
+
 `
 
 export const LoginAlertDivStyled = styled.div<StylesProps>`
+  margin-bottom: 20px;
   display: flex;
   color: #ff0000;
   justify-content: center;
   font-size: 15px;
-  height: 10px;
+  height: 20px;
 `
 
 export const LinkToUserRegistrationDivStyled = styled.div<StylesProps>`
   display: flex;
   justify-content: center;
-  height: 10px;
+  height: 20px;
 
   a{
     text-decoration: none;

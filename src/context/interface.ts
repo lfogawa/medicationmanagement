@@ -9,5 +9,6 @@ export interface ContextProps {
   value: LoginProps | null;
   setValue: (value: string) => void;
   user: LoginProps;
+  setUser?: any;
   logout: () => void;
 }

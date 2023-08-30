@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'
 import { InputField } from '../../components/InputField';
 import { LoginAlertDivStyled, LoginDivContainerStyled, LoginDivStyled, LinkToUserRegistrationDivStyled } from './styled';
 import { Button } from '../../components/Button';
@@ -10,22 +10,23 @@ function Login() {
     password: '',
   });
 
-  const [alerts, setAlerts] = useState({
-    emailAlert: '',
-    passwordAlert: '',
-    emailPasswordAlert: '',
+  const [alert, setAlert] = useState({
+    alert: '',
   })
 
   const clearAlerts = () => {
-    setAlerts((previousData) => ({
+    setAlert((previousData) => ({
       ...previousData,
-      emailAlert: '',
-      passwordAlert: '',
-      emailPasswordAlert: '',
+      alert: '',
     }))
   };
 
-  const navigate = useNavigate();
+  const existingUser = JSON.parse(localStorage.getItem('userData') || '[]');
+  const [userList, setUserList] = useState(existingUser);  
+
+  useEffect(() => {
+    setUserList(existingUser);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -33,34 +34,38 @@ function Login() {
     clearAlerts();
 
     if (!form.email && !form.password) {
-      setAlerts((previousData) => ({
+      setAlert((previousData) => ({
         ...previousData,
-        emailPasswordAlert: 'Please, type your e-mail and password.'
+        alert: 'Please, type your e-mail and password.'
       }));
     } else if (!form.email) {
-      setAlerts((previousData) => ({
+      setAlert((previousData) => ({
         ...previousData,
-        emailAlert: 'Please, type your e-mail.'
-      }));
-    } else if (!form.password) {
-      setAlerts((previousData) => ({
-        ...previousData,
-        passwordAlert: 'Please, type your password.'
+        alert: 'Please, type your e-mail.'
       }));
     } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) {
-      setAlerts((previousData) => ({
+      setAlert((previousData) => ({
         ...previousData,
-        emailAlert: 'Please, type a valid e-mail.',
+        alert: 'Please, type a valid e-mail.',
+      }));
+    } else if (!form.password) {
+      setAlert((previousData) => ({
+        ...previousData,
+        alert: 'Please, type your password.'
       }));
     } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password)) {
-      setAlerts((previousData) => ({
+      setAlert((previousData) => ({
         ...previousData,
-        passwordAlert: 'Password must have at least 8 characters, including letters and numbers.',
+        alert: 'Password must have at least 8 characters, including letters and numbers.',
       }));
-    } else {
-      navigate('/pharmacyMap');
-
+    } else if (userList.some((user: { email: string; password: string; }) => user.email === form.email && user.password === form.password)) {
       localStorage.setItem('user', JSON.stringify(form));
+      location.href = '/pharmacyMap';
+    } else {
+      setAlert((previousData) => ({
+        ...previousData,
+        alert: 'E-mail and/or password incorrect.',
+      }));
     }
 
     setTimeout(clearAlerts, 3500);
@@ -96,9 +101,7 @@ function Login() {
             </Button>
           </form>
           <LoginAlertDivStyled>
-            <p>{alerts.emailAlert}</p>
-            <p>{alerts.passwordAlert}</p>
-            <p>{alerts.emailPasswordAlert}</p>
+            <p>{alert.alert}</p>
           </LoginAlertDivStyled>
           <LinkToUserRegistrationDivStyled>
             <Link to="/userRegistration" >Don't have an account? Click here.</Link>
