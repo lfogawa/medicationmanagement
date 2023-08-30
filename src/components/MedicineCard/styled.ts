@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { styled } from "styled-components";
 import { StylesProps } from "../../assets/styles/interface";
 
 export const MedicineCardButtonStyled = styled.button<StylesProps>`

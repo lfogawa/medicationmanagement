@@ -1,4 +1,4 @@
-import { styled, css } from "styled-components";
+import { styled } from "styled-components";
 import { StylesProps } from "../../assets/styles/interface";
 
 export const ButtonStyledDiv = styled.div<StylesProps>`

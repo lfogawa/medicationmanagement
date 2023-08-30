@@ -21,6 +21,6 @@ export interface StylesProps{
   filter?: string;
   transitionDuration?: string;
   transform?: string;
-  menuOpen?: boolean;
+  $menuOpen?: boolean;
   success?: boolean;
 }

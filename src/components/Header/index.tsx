@@ -16,7 +16,7 @@ function Header() {
 
   return (
     <>
-      <HeaderStyled menuOpen={menuOpen}>
+      <HeaderStyled $menuOpen={menuOpen}>
         <a href="/pharmacyMap"><img src={logo} alt="Logo." /></a>
         <nav>          
           <ul>
