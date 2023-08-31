@@ -334,7 +334,7 @@ function PharmacyRegistration() {
               <p>* fields must be filled.</p>
             <Button type='submit'>Register</Button>
           </form>
-          <PharmacyRegistrationAlertDivStyled success={alerts.success}>
+          <PharmacyRegistrationAlertDivStyled $success={alerts.success}>
             <p>{alerts.alert}</p>
           </PharmacyRegistrationAlertDivStyled>
       </div>

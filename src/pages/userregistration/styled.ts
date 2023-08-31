@@ -26,7 +26,7 @@ export const UserRegistrationDivStyled = styled.div<StylesProps>`
 export const UserRegistrationAlertDivStyled = styled.div<StylesProps>`
   margin-bottom: 20px;
   display: flex;
-  color: ${(props) => (props.success ? '#31955F' : '#ff0000')};
+  color: ${(props) => (props.$success ? '#31955F' : '#ff0000')};
   justify-content: center;
   font-size: 15px;
   height: 20px;

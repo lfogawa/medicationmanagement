@@ -9,7 +9,7 @@ export const PharmacyRegistrationAlertDivStyled = styled.div<StylesProps>`
   flex-direction: column;
   font-size: 15px;
   font-weight: bold;
-  color: ${props => (props.success ? "#31955F" : "#ff0000")};
+  color: ${props => (props.$success ? "#31955F" : "#ff0000")};
   height: 30px;
 `
 export const PharmacyRegistrationDivContainerStyled = styled.div<StylesProps>`

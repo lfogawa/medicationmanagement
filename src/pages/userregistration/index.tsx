@@ -163,7 +163,7 @@ function UserRegistration(){
               />
             <Button type='submit'>Register</Button>
           </form>
-        <UserRegistrationAlertDivStyled success={alerts.success}>
+        <UserRegistrationAlertDivStyled $success={alerts.success}>
           <p>{alerts.alert}</p>
         </UserRegistrationAlertDivStyled>
         <LinkToLoginDivStyled>
