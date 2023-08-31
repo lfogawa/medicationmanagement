@@ -3,13 +3,16 @@ import { StylesProps } from "../../assets/styles/interface"
 
 export const LoginHeaderStyled = styled.header<StylesProps>`
   position: fixed;
-  margin-top: 20px;
+  padding-top: 20px;
   top: 0;
   left: 0;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
 
   img{
     width: 5em;

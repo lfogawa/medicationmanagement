@@ -34,8 +34,14 @@ export const FooterDivContainerStyled = styled.div<StylesProps>`
 
   img{
     width: 85px;
+    transition-duration: 400ms;
   }
 
+  img:hover{
+    transform: scale(1.1);
+    transition-duration: 400ms;
+  }
+  
   @media (max-width: 700px){
     img{
       width: 70px;

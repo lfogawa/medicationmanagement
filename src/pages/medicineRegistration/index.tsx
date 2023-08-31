@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
@@ -15,28 +15,26 @@ function MedicineRegistration(){
     type: '',
   });
 
-  const [alert, setAlert] = useState({
-    general: false,
-    success: false,
-    failure: false,
-    medicineRegistered: false
+  const [alerts, setAlerts] = useState({
+    alert: '',
+    success: false
   });
   
-  useEffect(() => {
-    setAlert({
-      general: false,
-      success: false,
-      failure: false,
-      medicineRegistered: false
-    });
-  }, []);
-
+  const clearAlerts = () => {
+    setAlerts((previousData) => ({
+      ...previousData,
+      alert: '',
+      success: false
+    }))
+  };
 
   const types = ['Alopático', 'de Referência', 'Genérico', 'Similar', 'Fitoterápico', 'Homeopático', 'Manipulado', 'Fracionado', 'Biológico']
 
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    clearAlerts();
 
     if (
       !form.medicineName ||
@@ -45,8 +43,11 @@ function MedicineRegistration(){
       !form.unitPrice ||
       form.type === ""
     ) {
-      setAlert({ ...alert, general: true });
-      setTimeout(() => setAlert({ ...alert, general: false }), 3500);
+      setAlerts((previousData) => ({
+        ...previousData,
+        alert: 'Please fill in all required fields.'
+      }));
+      setTimeout(() => clearAlerts(), 3500);
       return;
     } else {
       try {
@@ -74,15 +75,22 @@ function MedicineRegistration(){
 
         if (isMedicineAlreadyRegistered) {
           // Show alert if medicine data is already registered
-          setAlert({ ...alert, medicineRegistered: true });
-          setTimeout(() => setAlert({ ...alert, medicineRegistered: false }), 3500);
+          setAlerts((previousData) => ({
+            ...previousData,
+            alert: 'Medicine already registered.',
+          }))
+          setTimeout(() => clearAlerts(), 3500);
         } else {
           // Update localStorage with the updated array (appending new data)
           localStorage.setItem('itemMedicineData', JSON.stringify([...existingMedicine, newMedicine]));
 
           // Show success alert
-          setAlert({ ...alert, success: true });
-          setTimeout(() => setAlert({ ...alert, success: false }), 3500);
+          setAlerts((previousData) => ({
+            ...previousData,
+            alert: 'Registration successfull!',
+            success: true
+          }))
+          setTimeout(() => clearAlerts(), 3500);
 
           // Reset form
           setForm({
@@ -94,12 +102,15 @@ function MedicineRegistration(){
             type: ''
           })
         }
-
+        setTimeout(() => clearAlerts(), 3500);
         return;
       } catch (error) {
         console.error("Error during registration:", error);
-        setAlert({ ...alert, failure: true });
-        setTimeout(() => setAlert({ ...alert, failure: false }), 3500);
+        setAlerts((previousData) => ({
+          ...previousData,
+          alert: 'Registration failure.',
+        }))
+        setTimeout(() => clearAlerts(), 3500);
         return;
       }
     }
@@ -167,11 +178,8 @@ function MedicineRegistration(){
               <p>* fields must be filled.</p>
             <Button type='submit'>Register</Button>
           </form>
-        <MedicineRegistrationAlertDivStyled>
-          {alert.general && <p style={{ color: 'red' }}>Please fill in all required fields.</p>}
-          {alert.success && <p style={{ color: 'green' }}>Registration successfull!</p>}
-          {alert.failure && <p style={{ color: 'red' }}>Registration failure.</p>}
-          {alert.medicineRegistered && <p style={{ color: 'red' }}>Medicine already registered.</p>}
+        <MedicineRegistrationAlertDivStyled $success={alerts.success}>
+          <p>{alerts.alert}</p>
         </MedicineRegistrationAlertDivStyled>
       </MedicineRegistrationDivStyled>
     </>

@@ -20,10 +20,10 @@ function SelectField({
   return (
     <SelectFieldDivStyled>
       <label htmlFor={id}>{label}</label>
-      <select name={name} id={id} value={value} onChange={(e) => onChange(e.target.value)} defaultValue="">
+      <select name={name} id={id} value={value} onChange={(e) => onChange(e.target.value)}>
         <option value=""></option>
         {options.map((option, index) => (
-          <option key={index} value={option.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/\s/g, "")}>
+          <option key={index} value={option}>
             {option}
           </option>
         ))}

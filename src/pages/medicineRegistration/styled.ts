@@ -7,11 +7,9 @@ export const MedicineRegistrationDivStyled = styled.div<StylesProps>`
 export const MedicineRegistrationAlertDivStyled = styled.div<StylesProps>`
   margin-bottom: 1em;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-direction: column;
+  color: ${(props) => (props.$success ? '#31955F' : '#ff0000')};
+  justify-content: center;
   font-size: 15px;
   font-weight: bold;
-  color: #ff0000;
   height: 30px;
 `

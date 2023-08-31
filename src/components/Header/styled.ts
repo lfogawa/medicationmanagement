@@ -41,12 +41,12 @@ export const HeaderStyled = styled.header<StylesProps>`
     }
 
     .bar {
-      margin: ${props => (props.menuOpen ? "6px" : "none")}; 
+      margin: ${props => (props.$menuOpen ? "6px" : "none")}; 
       transition-duration: 400ms;
     }
 
     ul {
-      display: ${props => (props.menuOpen ? "flex" : "none")};
+      display: ${props => (props.$menuOpen ? "flex" : "none")};
       left: 0;
       flex-direction: column;
       background-color: #FFFFFF;
@@ -134,6 +134,15 @@ export const HeaderStyled = styled.header<StylesProps>`
     li > a{
       text-decoration: none;
       color: #31955F;
+    }
+
+    img{
+      transition-duration: 400ms;
+    }
+
+    img:hover{
+      transform: scale(1.1);
+      transition-duration: 400ms;     
     }
   }
 `;

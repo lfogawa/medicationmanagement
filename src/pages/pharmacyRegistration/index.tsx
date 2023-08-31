@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { InputField } from "../../components/InputField";
 import { PharmacyRegistrationAlertDivStyled, PharmacyRegistrationDivContainerStyled, PharmacyRegistrationDivStyled } from "./styled";
 import { Button } from "../../components/Button";
@@ -23,21 +23,18 @@ function PharmacyRegistration() {
     geolocationLongitude: '',
   })
 
-  const [alert, setAlert] = useState({
-    general: false,
-    success: false,
-    failure: false,
-    pharmacyRegistered: false
+  const [alerts, setAlerts] = useState({
+    alert: '',
+    success: false
   });
 
-  useEffect(() => {
-    setAlert({
-      general: false,
-      success: false,
-      failure: false,
-      pharmacyRegistered: false
-    });
-  }, []);
+  const clearAlerts = () => {
+    setAlerts((previousData) => ({
+      ...previousData,
+      alert: '',
+      success: false
+    }))
+  };
 
   // Autofill adress informations using Zip Code (Brasil API)
   const checkZipCode = async (zipCode: string) => {
@@ -62,6 +59,10 @@ function PharmacyRegistration() {
         }))
       } catch (error) {
         console.error("Error during fetch:", error);
+        setAlerts((previousData) => ({
+          ...previousData,
+          alert: 'We could not find other address informations from your Zip Code. Please insert each of them manually.'
+        }));
       }
     }
   };
@@ -69,6 +70,8 @@ function PharmacyRegistration() {
   // Onsubmit check required fields and insert localstorage information if not repeated
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    clearAlerts();
 
     // Check if required fields are filled
     if (
@@ -86,8 +89,11 @@ function PharmacyRegistration() {
       !form.geolocationLatitude ||
       !form.geolocationLongitude
     ) {
-      setAlert({ ...alert, general: true });
-      setTimeout(() => setAlert({ ...alert, general: false }), 3500);
+      setAlerts((previousData) => ({
+        ...previousData,
+        alert: 'Please fill in all required fields.'
+      }));
+      setTimeout(() => clearAlerts(), 3500);
       return;
     } else {
       try {
@@ -114,7 +120,7 @@ function PharmacyRegistration() {
         const existingPharmacy = JSON.parse(localStorage.getItem('itemPharmacyData') || '[]');
 
         // Check if the new pharmacy data is already registered
-        const isMedicineAlreadyRegistered = existingPharmacy.some(
+        const isPharmacyAlreadyRegistered = existingPharmacy.some(
           (pharmacy: any) =>
             pharmacy.corporateName === newPharmacyData.corporateName &&
             pharmacy.cnpj === newPharmacyData.cnpj &&
@@ -123,44 +129,53 @@ function PharmacyRegistration() {
             pharmacy.number === newPharmacyData.number
         );
 
-        if (isMedicineAlreadyRegistered) {
+        if (isPharmacyAlreadyRegistered) {
           // Show alert if pharmacy data is already registered
-          setAlert({ ...alert, pharmacyRegistered: true });
-          setTimeout(() => setAlert({ ...alert, pharmacyRegistered: false }), 3500);
+          setAlerts((previousData) => ({
+            ...previousData,
+            alert: 'Pharmacy already registered.',
+          }))
+          setTimeout(() => clearAlerts(), 3500);
         } else {
           // Update localStorage with the updated array (appending new data)
           localStorage.setItem('itemPharmacyData', JSON.stringify([...existingPharmacy, newPharmacyData]));
 
           // Show success alert
-          setAlert({ ...alert, success: true });
-          setTimeout(() => setAlert({ ...alert, success: false }), 3500);
-        }
+          setAlerts((previousData) => ({
+            ...previousData,
+            alert: 'Registration successfull!',
+            success: true
+          }))
+          setTimeout(() => clearAlerts(), 3500);
         
-        // Reset form
-        setForm({
-          corporateName: '',
-          cnpj: '',
-          tradeName: '',
-          companyEmail: '',
-          companyPhone: '',
-          companyCellphone: '',
-          zipCode: '',
-          street: '',
-          number: '',
-          neighborhood: '',
-          city: '',
-          state: '',
-          complement: '',
-          geolocationLatitude: '',
-          geolocationLongitude: '',
-        })
-
+          // Reset form
+          setForm({
+            corporateName: '',
+            cnpj: '',
+            tradeName: '',
+            companyEmail: '',
+            companyPhone: '',
+            companyCellphone: '',
+            zipCode: '',
+            street: '',
+            number: '',
+            neighborhood: '',
+            city: '',
+            state: '',
+            complement: '',
+            geolocationLatitude: '',
+            geolocationLongitude: '',
+          })
+        }
         return;
       } catch (error) {
         // Show error alert
         console.error("Error during registration:", error);
-        setAlert({ ...alert, failure: true });
-        setTimeout(() => setAlert({ ...alert, failure: false }), 3500);
+        setAlerts((previousData) => ({
+          ...previousData,
+          alert: 'Registration failure.',
+        }))
+        setTimeout(() => clearAlerts(), 3500);
         return;
       }
     }
@@ -302,7 +317,7 @@ function PharmacyRegistration() {
                   name="geolocationLatitude"
                   id="geolocationLatitude"
                   value={form.geolocationLatitude}
-                  onChange={(value) => setForm({...form, geolocationLatitude: value})}
+                  onChange={(value) => setForm({...form, geolocationLatitude: value.replace(/,/g, '.')})}
                   placeholder="Type the Geolocation Latitude"
                 />
                 <InputField
@@ -311,7 +326,7 @@ function PharmacyRegistration() {
                   name="geolocationLongitude"
                   id="geolocationLongitude"
                   value={form.geolocationLongitude}
-                  onChange={(value) => setForm({...form, geolocationLongitude: value})}
+                  onChange={(value) => setForm({...form, geolocationLongitude: value.replace(/,/g, '.')})}
                   placeholder="Type the Geolocation Longitude"
                 />
               </PharmacyRegistrationDivStyled>  
@@ -319,11 +334,8 @@ function PharmacyRegistration() {
               <p>* fields must be filled.</p>
             <Button type='submit'>Register</Button>
           </form>
-          <PharmacyRegistrationAlertDivStyled success={alert.success}>
-            {alert.general && <p>Please fill in all required fields.</p>}
-            {alert.success && <p>Registration successfull!</p>}
-            {alert.failure && <p>Registration failure.</p>}
-            {alert.pharmacyRegistered && <p>Pharmacy already registered.</p>}
+          <PharmacyRegistrationAlertDivStyled $success={alerts.success}>
+            <p>{alerts.alert}</p>
           </PharmacyRegistrationAlertDivStyled>
       </div>
     </>
