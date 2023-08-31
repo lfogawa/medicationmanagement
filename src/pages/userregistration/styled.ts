@@ -29,6 +29,7 @@ export const UserRegistrationAlertDivStyled = styled.div<StylesProps>`
   color: ${(props) => (props.$success ? '#31955F' : '#ff0000')};
   justify-content: center;
   font-size: 15px;
+  font-weight: bold;
   height: 20px;
 `
 
