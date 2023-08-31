@@ -16,6 +16,7 @@
 * [Description](#description) | Descrição
 * [Funcionalities](#funcionalities) | Funcionalidades
 * [Improvements possibilities](#improvements-possibilities) | Possibilidades de melhoria
+* [Video of the project](#video-of-the-project) | Vídeo do projeto
 * [Access the project](#access-the-project) | Acesse o projeto
 * [Run the project](#run-the-project) | Execute o projeto
 * [Developers](#developers) | Desenvolvedores
@@ -246,6 +247,16 @@
 🔨 Implementar o back-end para guardar as informações de cadastro (usuários, farmácias e medicamentos) em um banco de dados OU melhorar a utilização do hook "useLocalStorage.ts"<br>
 🔨 Revisar profundamente o código, analisando se está de acordo com as boas práticas e corrigindo-o, há espaços para melhorias do uso do typescript, styled components e lógica de programação<br>
 <br>
+
+<p align="right">(<a href="#summary">back to top | voltar ao topo</a>)</p>
+
+<br>
+
+## Video of the project
+
+<br>
+
+* Video link: https://drive.google.com/file/d/1i_M9UdhBOSgmTry-hXudhM05v8a1zap5/view?usp=sharing
 
 <p align="right">(<a href="#summary">back to top | voltar ao topo</a>)</p>
 
