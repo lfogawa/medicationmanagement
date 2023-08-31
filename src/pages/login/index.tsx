@@ -57,12 +57,7 @@ function Login() {
         ...previousData,
         alert: 'Please, type your password.'
       }));
-    } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password)) {
-      setAlert((previousData) => ({
-        ...previousData,
-        alert: 'Password must have at least 8 characters, including letters and numbers.',
-      }));
-    }
+    } 
     // If the e-mail and password are correct, an "user" will be added to localstorage, allowing private routes access
     else if (userList.some((user: { email: string; password: string; }) => user.email === form.email && user.password === form.password)) {
       localStorage.setItem('user', JSON.stringify(form));
