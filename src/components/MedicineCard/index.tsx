@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Modal } from "../Modal";
 import { MedicineCardProps } from "./interface"
 import { MedicineCardButtonStyled } from "./styled"
+import medicine from "../../assets/img/medicine.jpg"
 
 function MedicineCard({
   medicineName,
@@ -32,7 +33,7 @@ function MedicineCard({
       onMouseUp={handleMouseUp}
       className={btnClick ? 'active' : ''}
     >
-      <img src="src\assets\img\medicine.jpg" alt="Medicine image." />
+      <img src={medicine} alt="Medicine image." />
       <h3>Medicine name: {medicineName}</h3>
         <p>Lab name: {labName}</p>
         <p className="details">Click for details</p>

@@ -34,6 +34,7 @@ export const LoginAlertDivStyled = styled.div<StylesProps>`
   color: #ff0000;
   justify-content: center;
   font-size: 15px;
+  font-weight: bold;
   height: 20px;
 `
 
