@@ -4,13 +4,15 @@ import { LinkToLoginDivStyled, UserRegistrationAlertDivStyled, UserRegistrationD
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 
-function UserRegistration(){
+function UserRegistration() {
+  // User data array
   const [form, setForm] = useState({
     email: '',
     password: '',
     confirmPassword: ''    
   });
 
+  // Alerts
   const [alerts, setAlerts] = useState({
     alert: '',
     success: false
@@ -30,6 +32,7 @@ function UserRegistration(){
 
     clearAlerts();
 
+    // Check if required fields are filled
     if (!form.email ||
       !form.password ||
       !form.confirmPassword) {
@@ -38,6 +41,7 @@ function UserRegistration(){
           alert: 'Please fill in all required fields.'
         }));   
       }
+      // Check if passwords match
       else if (
         form.password !== form.confirmPassword
       ) {
@@ -46,12 +50,14 @@ function UserRegistration(){
         alert: 'Passwords does not match.'
       }));
       return;
+      // Check if e-mail has "@.com"
       } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) {
       setAlerts((previousData) => ({
         ...previousData,
         alert: 'Please, type a valid e-mail.',
       }));
       return;
+      // Check if password has at least 8 characters, including letters and numbers.
       } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password)) {
       setAlerts((previousData) => ({
         ...previousData,
@@ -60,6 +66,7 @@ function UserRegistration(){
       return;
     }
     else {
+      // New user data array
       try {
         const newUser = {
           email: form.email,
@@ -102,6 +109,7 @@ function UserRegistration(){
         setTimeout(() => clearAlerts(), 3500);
         return;
       } catch (error) {
+        // Show registration error alert
         console.error("Error during registration:", error);
         setAlerts((previousData) => ({
           ...previousData,

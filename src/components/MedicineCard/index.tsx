@@ -11,8 +11,10 @@ function MedicineCard({
   unitPrice,
   type
 }: MedicineCardProps) {
+  // Uses react-modal to expand the card and show more medicine details
   const [openModal, setOpenModal] = useState(false);
 
+  // Check if the card is clicked
   const [btnClick, setBtnClick] = useState(false);
 
   const handleMouseDown = () => {
@@ -35,6 +37,7 @@ function MedicineCard({
         <p>Lab name: {labName}</p>
         <p className="details">Click for details</p>
       
+      {/* Information that modal will show once card is clicked */}
       {openModal && (
         <Modal>
           <>

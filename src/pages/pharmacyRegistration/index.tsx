@@ -5,6 +5,7 @@ import { PharmacyRegistrationAlertDivStyled, PharmacyRegistrationDivContainerSty
 import { Button } from "../../components/Button";
 
 function PharmacyRegistration() {
+  // Pharmacy data array
   const [form, setForm] = useState({
     corporateName: '',
     cnpj: '',
@@ -23,6 +24,7 @@ function PharmacyRegistration() {
     geolocationLongitude: '',
   })
 
+  // Alerts
   const [alerts, setAlerts] = useState({
     alert: '',
     success: false
@@ -36,7 +38,7 @@ function PharmacyRegistration() {
     }))
   };
 
-  // Autofill adress informations using Zip Code (Brasil API)
+  // Autofill address informations using Zip Code (Brasil API)
   const checkZipCode = async (zipCode: string) => {
     const newZipCode = zipCode;
     setForm((previousData) => ({
@@ -97,7 +99,7 @@ function PharmacyRegistration() {
       return;
     } else {
       try {
-        // Localstorage pharmacy informations
+        // New pharmacy data array
         const newPharmacyData = {
           corporateName: form.corporateName,
           cnpj: form.cnpj,
@@ -119,7 +121,7 @@ function PharmacyRegistration() {
         // Get existing pharmacy data array from localStorage
         const existingPharmacy = JSON.parse(localStorage.getItem('itemPharmacyData') || '[]');
 
-        // Check if the new pharmacy data is already registered
+        // Check if the new pharmacy data array is already registered
         const isPharmacyAlreadyRegistered = existingPharmacy.some(
           (pharmacy: any) =>
             pharmacy.corporateName === newPharmacyData.corporateName &&
@@ -130,7 +132,7 @@ function PharmacyRegistration() {
         );
 
         if (isPharmacyAlreadyRegistered) {
-          // Show alert if pharmacy data is already registered
+          // Show alert if pharmacy data array is already registered
           setAlerts((previousData) => ({
             ...previousData,
             alert: 'Pharmacy already registered.',
@@ -169,7 +171,7 @@ function PharmacyRegistration() {
         }
         return;
       } catch (error) {
-        // Show error alert
+        // Show registration error alert
         console.error("Error during registration:", error);
         setAlerts((previousData) => ({
           ...previousData,

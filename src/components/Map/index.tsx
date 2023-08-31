@@ -14,9 +14,11 @@ function Map({ pharmacies }: MapProps) {
     <MapContainerStyled center={[-15.720882, -50.412599]} zoom={4}>
       <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
       {pharmacies.map((pharmacy: any, index: number) => {
+        // Parses the localstorage string to a decimal number literal
         const latitude = parseFloat(pharmacy.geolocationLatitude);
         const longitude = parseFloat(pharmacy.geolocationLongitude);
 
+        // Verifies if NaN, if it's, it will show a map without the respective marker
         if (isNaN(latitude) || isNaN(longitude)) {
           return null;
         }
@@ -59,7 +61,8 @@ function Map({ pharmacies }: MapProps) {
                     <h3>Phone:</h3>
                     <p>{pharmacy.companyPhone}</p>
                   </>
-                )}
+                  )}
+                {/* Link to WhatsApp conversation */}
                 {pharmacy.companyCellphone && (
                   <>
                     <h3>Cellphone:</h3>

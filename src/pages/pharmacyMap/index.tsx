@@ -8,6 +8,7 @@ function PharmacyMap() {
   const [pharmacies, setPharmacies] = useState<MapProps[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Get pharmacy data array from localStorage if it exists
   useEffect(() => {
     const storedPharmaciesData = localStorage.getItem("itemPharmacyData");
 
@@ -20,13 +21,18 @@ function PharmacyMap() {
 
   return (
     <>
+      {/* Loading screen while waiting pharmacies content in map to be loaded */}
       {isLoading ? (
         <LoadingScreen />
-      ) : (
+      ) :
+        // Loades pharmacies content in map
+        (
         <>
           {pharmacies.length > 0 ? (
             <Map pharmacies={pharmacies} /> 
-          ) : (
+          ) : 
+          // If there's no pharmacy data array from localstorage, message below will appear
+          (
             <PharmacyMapDivStyled>
               <p>Sorry, there's no pharmacy registered.</p>
             </PharmacyMapDivStyled>

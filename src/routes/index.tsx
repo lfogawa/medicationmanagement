@@ -8,6 +8,7 @@ function RoutesApp() {
   const { user } = useAuth();
   const [isVerificationComplete, setIsVerificationComplete] = useState(false);
 
+  // Check if there's a "user" on localstorage
   useEffect(() => {
     const checkUserInLocalStorage = async () => {
       await localStorage.getItem('user');

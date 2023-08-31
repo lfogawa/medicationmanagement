@@ -5,11 +5,13 @@ import { LoginAlertDivStyled, LoginDivContainerStyled, LoginDivStyled, LinkToUse
 import { Button } from '../../components/Button';
 
 function Login() {
+  // User data
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
 
+  // Alerts
   const [alert, setAlert] = useState({
     alert: '',
   })
@@ -21,6 +23,7 @@ function Login() {
     }))
   };
 
+  // Get user data array from localStorage if it exists
   const existingUser = JSON.parse(localStorage.getItem('userData') || '[]');
   const [userList, setUserList] = useState(existingUser);  
 
@@ -33,6 +36,7 @@ function Login() {
 
     clearAlerts();
 
+    // Check if fields are being correctly filled
     if (!form.email && !form.password) {
       setAlert((previousData) => ({
         ...previousData,
@@ -58,7 +62,9 @@ function Login() {
         ...previousData,
         alert: 'Password must have at least 8 characters, including letters and numbers.',
       }));
-    } else if (userList.some((user: { email: string; password: string; }) => user.email === form.email && user.password === form.password)) {
+    }
+    // If the e-mail and password are correct, an "user" will be added to localstorage, allowing private routes access
+    else if (userList.some((user: { email: string; password: string; }) => user.email === form.email && user.password === form.password)) {
       localStorage.setItem('user', JSON.stringify(form));
       location.href = '/pharmacyMap';
     } else {
