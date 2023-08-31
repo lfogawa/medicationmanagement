@@ -32,6 +32,7 @@ export const PopupDivStyled = styled.div<StylesProps>`
     margin: 0;
     margin-top: 5px;
     margin-bottom: 10px;
+    margin-right: 5px;
   }
 
   @media (max-width: 800px){
