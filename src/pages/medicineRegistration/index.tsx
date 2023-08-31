@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { InputField } from "../../components/InputField";
 import { TextAreaField } from "../../components/TextAreaField";
 import { SelectField } from "../../components/SelectField";
@@ -34,6 +34,8 @@ function MedicineRegistration(){
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    clearAlerts();
+
     if (
       !form.medicineName ||
       !form.labName ||
@@ -45,6 +47,7 @@ function MedicineRegistration(){
         ...previousData,
         alert: 'Please fill in all required fields.'
       }));
+      setTimeout(() => clearAlerts(), 3500);
       return;
     } else {
       try {
@@ -76,6 +79,7 @@ function MedicineRegistration(){
             ...previousData,
             alert: 'Medicine already registered.',
           }))
+          setTimeout(() => clearAlerts(), 3500);
         } else {
           // Update localStorage with the updated array (appending new data)
           localStorage.setItem('itemMedicineData', JSON.stringify([...existingMedicine, newMedicine]));
@@ -86,6 +90,7 @@ function MedicineRegistration(){
             alert: 'Registration successfull!',
             success: true
           }))
+          setTimeout(() => clearAlerts(), 3500);
 
           // Reset form
           setForm({
@@ -105,11 +110,10 @@ function MedicineRegistration(){
           ...previousData,
           alert: 'Registration failure.',
         }))
+        setTimeout(() => clearAlerts(), 3500);
         return;
       }
     }
-
-    setTimeout(() => clearAlerts(), 3500);
   };
 
 
