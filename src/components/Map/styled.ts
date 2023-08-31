@@ -18,16 +18,20 @@ export const PopupDivContainerStyled = styled.div<StylesProps>`
 `
 
 export const PopupDivStyled = styled.div<StylesProps>`
-  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  flex-wrap: wrap;
+  width: auto;
+
+  h3{
+    margin-right: 20px;
+  }
 
   p{
     margin: 0;
     margin-top: 5px;
     margin-bottom: 10px;
-    padding: 0;
   }
 
   @media (max-width: 800px){
