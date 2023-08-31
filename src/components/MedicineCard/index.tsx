@@ -31,17 +31,17 @@ function MedicineCard({
       className={btnClick ? 'active' : ''}
     >
       <img src="src\assets\img\medicine.jpg" alt="Medicine image." />
-      <h3>{medicineName}</h3>
-        <p>{labName}</p>
+      <h3>Medicine name: {medicineName}</h3>
+        <p>Lab name: {labName}</p>
         <p className="details">Click for details</p>
       
       {openModal && (
         <Modal>
           <>
-            <p>{dosage}</p>
-            {description && <p>{description}</p>}
-            <p>R$ {unitPrice}</p>
-            <p>{type}</p>
+            <p>Dosage: {dosage}</p>
+            {description && <p>Description: {description}</p>}
+            <p>Unit price: R$ {unitPrice}</p>
+            <p>Type: {type}</p>
           </>
         </Modal>
       )}
