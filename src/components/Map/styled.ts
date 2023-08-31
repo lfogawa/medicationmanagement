@@ -15,14 +15,10 @@ export const MapContainerStyled = styled(MapContainer)<StylesProps>`
 export const PopupDivContainerStyled = styled.div<StylesProps>`
   display: flex;
   font-size: 12px;
-
-  @media (max-width: 800px){
-    font-size: 14px;
-  }
 `
 
 export const PopupDivStyled = styled.div<StylesProps>`
-  padding: 1em;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
