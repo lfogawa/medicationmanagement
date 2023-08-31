@@ -149,7 +149,7 @@ function MedicineRegistration() {
               />
               <InputField
                 label="Dosage*"
-                type="number"
+                type="text"
                 name="dosage"
                 id="dosage"
                 value={form.dosage}
