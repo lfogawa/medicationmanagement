@@ -4,14 +4,15 @@ import { LinkToLoginDivStyled, UserRegistrationAlertDivStyled, UserRegistrationD
 import { Button } from "../../components/Button";
 import { Link } from "react-router-dom";
 
-function UserRegistration(){
+function UserRegistration() {
+  // User data array
   const [form, setForm] = useState({
-    login: '',
-    password: '',
-    confirmPassword: '',
     email: '',
+    password: '',
+    confirmPassword: ''    
   });
 
+  // Alerts
   const [alerts, setAlerts] = useState({
     alert: '',
     success: false
@@ -31,15 +32,16 @@ function UserRegistration(){
 
     clearAlerts();
 
-    if (!form.login ||
+    // Check if required fields are filled
+    if (!form.email ||
       !form.password ||
-      !form.confirmPassword ||
-      !form.email) {
+      !form.confirmPassword) {
         setAlerts((previousData) => ({
           ...previousData,
           alert: 'Please fill in all required fields.'
         }));   
       }
+      // Check if passwords match
       else if (
         form.password !== form.confirmPassword
       ) {
@@ -48,12 +50,14 @@ function UserRegistration(){
         alert: 'Passwords does not match.'
       }));
       return;
+      // Check if e-mail has "@.com"
       } else if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/.test(form.email)) {
       setAlerts((previousData) => ({
         ...previousData,
         alert: 'Please, type a valid e-mail.',
       }));
       return;
+      // Check if password has at least 8 characters, including letters and numbers.
       } else if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(form.password)) {
       setAlerts((previousData) => ({
         ...previousData,
@@ -62,11 +66,11 @@ function UserRegistration(){
       return;
     }
     else {
+      // New user data array
       try {
         const newUser = {
-          login: form.login,
-          password: form.password,
-          email: form.email
+          email: form.email,
+          password: form.password,          
         };
 
         // Get existing user data array from localStorage
@@ -75,7 +79,6 @@ function UserRegistration(){
         // Check if the new user data is already registered
         const isUserAlreadyRegistered = existingUser.some(
           (user: any) =>
-            user.login === newUser.login ||
             user.email === newUser.email
         );
 
@@ -83,7 +86,7 @@ function UserRegistration(){
           // Show alert if user data is already registered
           setAlerts((previousData) => ({
             ...previousData,
-            alert: 'Login or e-mail already registered.',
+            alert: 'E-mail already registered.',
           }))
         } else {
           // Update localStorage with the updated array (appending new data)
@@ -98,15 +101,15 @@ function UserRegistration(){
 
           // Reset form
           setForm({
-            login: '',
+            email: '',
             password: '',
-            confirmPassword: '',
-            email: ''
+            confirmPassword: '',            
           })
         }
         setTimeout(() => clearAlerts(), 3500);
         return;
       } catch (error) {
+        // Show registration error alert
         console.error("Error during registration:", error);
         setAlerts((previousData) => ({
           ...previousData,
@@ -126,13 +129,13 @@ function UserRegistration(){
         <h2>User Registration</h2>
           <form onSubmit={handleSubmit}>
               <InputField
-                label="Login"
-                type="text"
-                name="login"
-                id="login"
-                value={form.login}
-                onChange={(value) => setForm({...form, login: value})}
-                placeholder="Type your Login"
+                label="E-mail"
+                type="email"
+                name="email"
+                id="email"
+                value={form.email}
+                onChange={(value) => setForm({...form, email: value})}
+                placeholder="Type your E-mail"
               />
               <InputField
                 label="Password"
@@ -151,15 +154,6 @@ function UserRegistration(){
                 value={form.confirmPassword}
                 onChange={(value) => setForm({...form, confirmPassword: value})}
                 placeholder="Type your Password again"
-              />
-              <InputField
-                label="E-mail"
-                type="email"
-                name="email"
-                id="email"
-                value={form.email}
-                onChange={(value) => setForm({...form, email: value})}
-                placeholder="Type your E-mail"
               />
             <Button type='submit'>Register</Button>
           </form>

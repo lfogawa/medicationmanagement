@@ -13,7 +13,7 @@ export const UserRegistrationDivStyled = styled.div<StylesProps>`
   width: 70%;
   border-radius: 15px;
   box-shadow: 12px 12px 20px 5px rgba(0,0,0,0.3);
-  height: 80vh;
+  height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-around;

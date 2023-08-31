@@ -5,7 +5,8 @@ import { SelectField } from "../../components/SelectField";
 import { MedicineRegistrationAlertDivStyled, MedicineRegistrationDivStyled } from "./styled";
 import { Button } from "../../components/Button";
 
-function MedicineRegistration(){
+function MedicineRegistration() {
+  // Medicine data
   const [form, setForm] = useState({
     medicineName: '',
     labName: '',
@@ -15,6 +16,7 @@ function MedicineRegistration(){
     type: '',
   });
 
+  // Alerts
   const [alerts, setAlerts] = useState({
     alert: '',
     success: false
@@ -28,6 +30,7 @@ function MedicineRegistration(){
     }))
   };
 
+  // Types of medicine
   const types = ['Alopático', 'de Referência', 'Genérico', 'Similar', 'Fitoterápico', 'Homeopático', 'Manipulado', 'Fracionado', 'Biológico']
 
 
@@ -36,6 +39,7 @@ function MedicineRegistration(){
 
     clearAlerts();
 
+    // Check if required fields are filled
     if (
       !form.medicineName ||
       !form.labName ||
@@ -51,6 +55,7 @@ function MedicineRegistration(){
       return;
     } else {
       try {
+        // New medicine data array information
         const newMedicine = {
           medicineName: form.medicineName,
           labName: form.labName,
@@ -105,6 +110,7 @@ function MedicineRegistration(){
         setTimeout(() => clearAlerts(), 3500);
         return;
       } catch (error) {
+        // Show registration error alert
         console.error("Error during registration:", error);
         setAlerts((previousData) => ({
           ...previousData,

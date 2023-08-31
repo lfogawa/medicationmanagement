@@ -4,6 +4,7 @@ import { MedicineCard } from '../../components/MedicineCard'
 import { CardDivContainerStyled, MedicineListDivStyled } from "./styled";
 
 function MedicineList() {
+  // Get medicine data array from localStorage if it exists
   const existingMedicine = JSON.parse(localStorage.getItem('itemMedicineData') || '[]');
   const [medicineList, setMedicineList] = useState(existingMedicine);  
 
@@ -28,7 +29,9 @@ function MedicineList() {
               />
             </div>
           ))
-        ) : (
+        ) :
+        // If there's no medicine data array from localstorage, message below will appear
+        (
           <MedicineListDivStyled>
             <p>Sorry, there's no medicine registered.</p>
           </MedicineListDivStyled>

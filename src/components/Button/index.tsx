@@ -6,6 +6,7 @@ function Button({
   type,
   children
 }: ButtonProps) {
+  // Check if button is clicked
   const [btnClick, setBtnClick] = useState(false);
 
   const handleMouseDown = () => {

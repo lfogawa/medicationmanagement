@@ -1,6 +1,7 @@
 import { createGlobalStyle } from "styled-components"
 import { StylesProps } from "./interface"
 
+// Universal styles
 export default createGlobalStyle<StylesProps>`
    *{
        margin: 0;
