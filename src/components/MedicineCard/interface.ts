@@ -5,4 +5,5 @@ export interface MedicineCardProps{
   description?: string,
   unitPrice?: number,
   type?: string
+  onDelete: () => void;
 }

@@ -3,6 +3,8 @@ import { Modal } from "../Modal";
 import { MedicineCardProps } from "./interface"
 import { MedicineCardButtonStyled } from "./styled"
 import medicine from "../../assets/img/medicine.jpg"
+import deleteButton from "../../assets/svg/deleteButton.svg"
+import { DeleteButtonStyled } from "../DeleteButton/styled";
 
 function MedicineCard({
   medicineName,
@@ -10,7 +12,8 @@ function MedicineCard({
   dosage,
   description,
   unitPrice,
-  type
+  type,
+  onDelete
 }: MedicineCardProps) {
   // Uses react-modal to expand the card and show more medicine details
   const [openModal, setOpenModal] = useState(false);
@@ -24,6 +27,10 @@ function MedicineCard({
 
   const handleMouseUp = () => {
     setBtnClick(false);
+  };
+
+  const handleDeleteClick = () => {
+    onDelete();
   };
 
   return (
@@ -49,6 +56,9 @@ function MedicineCard({
           </>
         </Modal>
       )}
+      <DeleteButtonStyled onClick={handleDeleteClick}>
+        <img src={deleteButton} alt="Delete button." />
+      </DeleteButtonStyled>
     </MedicineCardButtonStyled>
   )
 }

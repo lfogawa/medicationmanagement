@@ -3,12 +3,18 @@ import { MapProps } from './interface';
 import { MapContainerStyled, PopupDivContainerStyled, PopupDivStyled } from "./styled";
 import markerIcon from "../../assets/svg/markerIcon.svg"
 import { Icon } from 'leaflet';
+import deleteButton from "../../assets/svg/deleteButton.svg"
+import { DeleteButtonStyled } from "../DeleteButton/styled";
 
-function Map({ pharmacies }: MapProps) {
+function Map({ pharmacies, onDelete }: MapProps) {
   const customIcon = new Icon({
     iconUrl: markerIcon,
     iconSize: [45, 45]
   });
+
+  const handleDeleteClick = (index: number) => {
+    onDelete(index);
+  };
 
   return (
     <MapContainerStyled center={[-15.720882, -50.412599]} zoom={4}>
@@ -124,7 +130,10 @@ function Map({ pharmacies }: MapProps) {
                     <h3>GeolocationLongitude:</h3>
                     <p>{longitude}</p>
                   </>
-                )}
+                  )}
+              <DeleteButtonStyled onClick={() => handleDeleteClick(index)}>
+                <img src={deleteButton} alt="Delete button." />
+              </DeleteButtonStyled>
               </PopupDivStyled>
             </PopupDivContainerStyled>
           </Popup>
