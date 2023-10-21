@@ -122,6 +122,7 @@
 ✔️ You can navigate the map using the mouse.<br>
 ✔️ Clicking on a marker provides access to all information about the registered pharmacy (optional fields not filled will not appear).<br>
 ✔️ Initiate a conversation via WhatsApp with the pharmacy by clicking on the registered phone number link.<br>
+✔️ It's possible to delete a registered pharmacy.
 <br>
 
 📌 Pharmacy Registration Page.<br>
@@ -133,6 +134,7 @@
 📌 Registered Medicines page, with expandable cards for more details.<br>
 ✔️ You can view the image and name of each registered medicine and its laboratory in an expandable card.<br>
 ✔️ Clicking on the card expands it to display dosage, price, description (if available) and type of each registered medicine.<br>
+✔️ It's possible to delete a registered medication.
 <br>
 
 📌 Medicine Registration Page.<br>
@@ -174,6 +176,7 @@
 ✔️ É possível navegar pelo mapa utilizando o mouse.<br>
 ✔️ É possível clicar no marcador para ter acesso à todas as informações da farmácia cadastrada (campos opcionais não preenchidos não aparecerão).<br>
 ✔️ É possível iniciar uma conversa pelo WhatsApp com a farmácia ao clicar no link do celular cadastrado.<br>
+✔️ É possível excluir a farmácia cadastrada.<br>
 <br>
 
 📌 Página de cadastro de farmácias.<br>
@@ -185,6 +188,7 @@
 📌 Página de medicamentos cadastrados, com cartões expansíveis para mais detalhes.<br>
 ✔️ É possível visualizar, em um cartão expansível, a imagem e o nome do medicamento e do laboratório de cada medicamento cadastrado.<br>
 ✔️ É possível clicar no cartão, expandindo-o, fazendo com que apareça as informações de dosagem, preço, descrição (se houver) e tipo de cada medicamento cadastrado.<br>
+✔️ É possível excluir o medicamento cadastrado.<br>
 <br>
 
 📌 Página de cadastro de medicamentos.<br>
