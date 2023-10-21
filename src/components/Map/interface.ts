@@ -20,4 +20,5 @@ export interface MapProps {
   geolocationLongitude?: number,
   iconUrl?: string,
   iconSize?: string,
+  onDelete: (index: number) => void;
 }

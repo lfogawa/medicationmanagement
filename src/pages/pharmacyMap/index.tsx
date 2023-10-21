@@ -19,6 +19,14 @@ function PharmacyMap() {
     setIsLoading(false);
   }, []);
 
+  // Delete pharmacy registration
+  const handleDeletePharmacy = (index: number) => {
+    const updatedPharmacies = [...pharmacies];
+    updatedPharmacies.splice(index, 1);
+    setPharmacies(updatedPharmacies);
+    localStorage.setItem("itemPharmacyData", JSON.stringify(updatedPharmacies));
+  };
+
   return (
     <>
       {/* Loading screen while waiting pharmacies content in map to be loaded */}
@@ -29,7 +37,7 @@ function PharmacyMap() {
         (
         <>
           {pharmacies.length > 0 ? (
-            <Map pharmacies={pharmacies} /> 
+            <Map pharmacies={pharmacies} onDelete={handleDeletePharmacy} /> 
           ) : 
           // If there's no pharmacy data array from localstorage, message below will appear
           (

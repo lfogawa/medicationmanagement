@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { SearchField } from '../../components/SearchField'
 import { MedicineCard } from '../../components/MedicineCard'
-import { CardDivContainerStyled, MedicineListDivStyled } from "./styled";
+import { CardDivContainerStyled, MedicineListDivStyled } from "./styled"
 
 function MedicineList() {
   // Get medicine data array from localStorage if it exists
@@ -11,6 +11,13 @@ function MedicineList() {
   useEffect(() => {
     setMedicineList(existingMedicine);
   }, []);
+
+  const deleteMedicine = (index: number) => {
+    const updatedMedicineList = [...medicineList];
+    updatedMedicineList.splice(index, 1);
+    setMedicineList(updatedMedicineList);
+    localStorage.setItem('itemMedicineData', JSON.stringify(updatedMedicineList));
+  };
 
   return (
     <>
@@ -26,6 +33,7 @@ function MedicineList() {
                 description={medicine.description}
                 unitPrice={medicine.unitPrice}
                 type={medicine.type}
+                onDelete={() => deleteMedicine(index)}
               />
             </div>
           ))
