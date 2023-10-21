@@ -36,6 +36,10 @@ export const MedicineCardButtonStyled = styled.button<StylesProps>`
     border-radius: 15px;
   }
 
+  .deleteButton img{
+    width: 50px;
+  }
+
   .details{
     margin: 10px;
     font-weight: normal;

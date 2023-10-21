@@ -56,7 +56,7 @@ function MedicineCard({
           </>
         </Modal>
       )}
-      <DeleteButtonStyled onClick={handleDeleteClick}>
+      <DeleteButtonStyled onClick={handleDeleteClick} className="deleteButton">
         <img src={deleteButton} alt="Delete button." />
       </DeleteButtonStyled>
     </MedicineCardButtonStyled>
